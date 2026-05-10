@@ -101,23 +101,23 @@ async function getCurrentUser() {
 
 // UI Functions
 function openAuthModal() {
-    document.getElementById('authModal').style.display = 'flex';
+    document.getElementById('authModal').classList.remove('hidden');
 }
 
 function closeAuthModal() {
-    document.getElementById('authModal').style.display = 'none';
+    document.getElementById('authModal').classList.add('hidden');
 }
 
 function switchToSignup() {
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('signupForm').style.display = 'block';
+    document.getElementById('loginForm').classList.add('hidden');
+    document.getElementById('signupForm').classList.remove('hidden');
     document.getElementById('authTitle').textContent = 'Sign Up';
     document.getElementById('authSwitchText').innerHTML = 'Already have an account? <a href="#" onclick="switchToLogin()">Login</a>';
 }
 
 function switchToLogin() {
-    document.getElementById('loginForm').style.display = 'block';
-    document.getElementById('signupForm').style.display = 'none';
+    document.getElementById('loginForm').classList.remove('hidden');
+    document.getElementById('signupForm').classList.add('hidden');
     document.getElementById('authTitle').textContent = 'Login';
     document.getElementById('authSwitchText').innerHTML = 'Don\'t have an account? <a href="#" onclick="switchToSignup()">Sign up</a>';
 }

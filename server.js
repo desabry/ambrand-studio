@@ -64,11 +64,6 @@ app.get('/auth', (req, res) => {
     res.sendFile(path.join(__dirname, 'auth.html'));
 });
 
-// Bookings page
-app.get('/bookings', (req, res) => {
-    res.sendFile(path.join(__dirname, 'bookings.html'));
-});
-
 // Work Details page
 app.get('/work-details', (req, res) => {
     res.sendFile(path.join(__dirname, 'work-details.html'));

@@ -117,6 +117,7 @@ export default function InvoicesPage() {
           <select 
             className="bg-surface-50 border border-surface-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/20"
             value={statusFilter}
+            title="Filter by Status"
             onChange={(e) => setStatusFilter(e.target.value as any)}
           >
             <option value="all">All Status</option>
@@ -128,6 +129,7 @@ export default function InvoicesPage() {
           <select 
             className="bg-surface-50 border border-surface-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/20"
             value={sortBy}
+            title="Sort by"
             onChange={(e) => setSortBy(e.target.value as any)}
           >
             <option value="newest">Newest</option>

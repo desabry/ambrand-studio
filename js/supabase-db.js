@@ -246,46 +246,6 @@ async function dbDeleteMessage(id) {
 }
 
 /* ═══════════════════════════════════
-   BOOKINGS
-   ═══════════════════════════════════ */
-
-/**
- * Fetch all bookings (Provider only)
- */
-async function dbGetAllBookings() {
-  try {
-    const { data, error } = await supabaseClient
-      .from('bookings')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) throw error;
-    return data;
-  } catch (err) {
-    console.error('Error fetching all bookings:', err);
-    return [];
-  }
-}
-
-/**
- * Update booking status
- */
-async function dbUpdateBookingStatus(id, status) {
-  try {
-    const { error } = await supabaseClient
-      .from('bookings')
-      .update({ status: status })
-      .eq('id', id);
-
-    if (error) throw error;
-    return true;
-  } catch (err) {
-    console.error('Error updating booking status:', err);
-    return false;
-  }
-}
-
-/* ═══════════════════════════════════
    TESTIMONIALS
    ═══════════════════════════════════ */
 

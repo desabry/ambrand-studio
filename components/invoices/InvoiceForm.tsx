@@ -146,6 +146,7 @@ export function InvoiceForm({ initialData, onSuccess, onCancel }: Props) {
           <label className="text-sm font-semibold text-surface-700">Select Client</label>
           <select
             required
+            title="Select Client"
             className="w-full px-4 py-2 bg-white border border-surface-200 rounded-lg focus:ring-2 focus:ring-brand/20 focus:border-brand outline-none"
             value={clientId}
             onChange={(e) => setClientId(e.target.value)}
@@ -163,6 +164,7 @@ export function InvoiceForm({ initialData, onSuccess, onCancel }: Props) {
           <input
             type="date"
             required
+            title="Due Date"
             className="w-full px-4 py-2 bg-white border border-surface-200 rounded-lg focus:ring-2 focus:ring-brand/20 focus:border-brand outline-none"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
@@ -213,6 +215,7 @@ export function InvoiceForm({ initialData, onSuccess, onCancel }: Props) {
                       type="number"
                       required
                       min="1"
+                      title="Quantity"
                       className="w-full bg-transparent outline-none text-surface-900"
                       value={item.quantity}
                       onChange={(e) => updateItem(index, "quantity", parseInt(e.target.value))}
@@ -224,6 +227,7 @@ export function InvoiceForm({ initialData, onSuccess, onCancel }: Props) {
                       required
                       min="0"
                       step="0.01"
+                      title="Unit Price"
                       className="w-full bg-transparent outline-none text-surface-900"
                       value={item.unit_price}
                       onChange={(e) => updateItem(index, "unit_price", parseFloat(e.target.value))}
@@ -233,7 +237,7 @@ export function InvoiceForm({ initialData, onSuccess, onCancel }: Props) {
                     ${item.total_price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </td>
                   <td className="px-4 py-3">
-                    <button type="button" onClick={() => removeItem(index)} className="text-surface-400 hover:text-rose-600 transition-colors">
+                    <button type="button" onClick={() => removeItem(index)} className="text-surface-400 hover:text-rose-600 transition-colors" title="Remove Item">
                       <Trash2 size={18} />
                     </button>
                   </td>
@@ -266,6 +270,7 @@ export function InvoiceForm({ initialData, onSuccess, onCancel }: Props) {
               <span>Tax Rate (%)</span>
               <input
                 type="number"
+                title="Tax Rate"
                 className="w-16 px-2 py-1 bg-white border border-surface-200 rounded outline-none"
                 value={taxRate}
                 onChange={(e) => setTaxRate(parseFloat(e.target.value))}

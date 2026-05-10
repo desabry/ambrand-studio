@@ -74,6 +74,16 @@
             font-weight: 400;
             margin-bottom: 0.75rem;
         }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .project-empty-state {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 40px;
+        }
     </style>
 </head>
 
@@ -696,12 +706,10 @@
             // Check auth status for nav
             const { data: { session } } = await supabaseClient.auth.getSession();
             const navAuthLink = document.getElementById('navAuthLink');
-            const navBookingsLink = document.getElementById('navBookingsLink');
             const navAdminLink = document.getElementById('navAdminLink');
 
             if (session) {
                 navAuthLink.innerHTML = `<a href="#" onclick="signOut()" class="nav-link">Logout</a>`;
-                navBookingsLink.classList.remove('hidden');
                 
                 // Check if admin from user metadata
                 const userRole = session.user.user_metadata?.role || 'user';
@@ -730,7 +738,7 @@
                         </div>
                     `).join('');
                 } else {
-                    projectGrid.innerHTML = '<div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 40px;"><p>No projects found in the database.</p></div>';
+                    projectGrid.innerHTML = '<div class="empty-state project-empty-state"><p>No projects found in the database.</p></div>';
                 }
             }
         }
@@ -739,7 +747,7 @@
     </script>
 
     <!-- Authentication Modals -->
-    <div id="authModal" class="auth-modal" style="display: none;">
+    <div id="authModal" class="auth-modal hidden">
         <div class="auth-modal-content">
             <div class="auth-modal-header">
                 <h2 id="authTitle">Login</h2>
@@ -760,7 +768,7 @@
             </form>
             
             <!-- Signup Form -->
-            <form id="signupForm" class="auth-form" style="display: none;">
+            <form id="signupForm" class="auth-form hidden">
                 <div class="form-group">
                     <label for="signupName">Full Name</label>
                     <input type="text" id="signupName" required>
