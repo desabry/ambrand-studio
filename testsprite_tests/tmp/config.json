@@ -1,0 +1,19 @@
+{
+  "status": "commited",
+  "type": "backend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "backendAuthType": "Bearer token",
+  "executionArgs": {
+    "projectName": "Site",
+    "projectPath": "g:\\ambrand\\Site",
+    "testIds": [],
+    "additionalInstruction": "Test the dashboard navigation and check for testimonials loading. Note that loadTestimonials is called in dashboard.html but may be missing.",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-bKNuIEMScrJmNzLYJ7KKo4B0HL5PDLUb9q5E6AYCkRL-H0hz0JBPg8rY8eQYgeBZeXFFKT6iS-1n2ML3woHSyep9G3BqXcP8kbVop8_RCDDE5jhHrefQtSTK4qrxByDAgmg"
+    }
+  },
+  "serverPort": 51251,
+  "proxy": "http://6184e58a-b22e-4a5c-b3cf-a1483f1061d7:PZGbI9FkcMa6UjxAZ7TKkRPmETlfnOhZ@tun.testsprite.com:8080"
+}

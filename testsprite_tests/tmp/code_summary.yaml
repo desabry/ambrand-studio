@@ -1,0 +1,88 @@
+version: "2"
+type: frontend
+tech_stack:
+  - language: Javascript
+  - language: HTML
+  - language: CSS
+  - framework: Express.js (for routing)
+  - backend: Supabase
+  - ui_library: FontAwesome
+  - ui_library: SortableJS
+routes:
+  - path: /
+    file: index.html
+    auth_required: false
+    description: Landing page
+  - path: /auth
+    file: auth.html
+    auth_required: false
+    description: Login and signup page
+  - path: /dashboard
+    file: dashboard.html
+    auth_required: true
+    description: Admin dashboard for projects and bookings
+  - path: /works
+    file: works.html
+    auth_required: false
+    description: Portfolio gallery
+  - path: /about
+    file: about.html
+    auth_required: false
+    description: About the studio
+  - path: /contact
+    file: contact.html
+    auth_required: false
+    description: Contact page
+features:
+  - name: User Authentication
+    description: Login and signup using Supabase Auth
+    files:
+      - auth.html
+      - js/auth.js
+    entry_route: /auth
+    user_interactions:
+      - Click Login/Signup in navbar
+      - Fill email and password
+      - Submit form
+    api_calls:
+      - method: POST
+        endpoint: Supabase Auth API
+  - name: Project Builder
+    description: Drag and drop project content builder
+    files:
+      - dashboard.html
+      - js/dashboard.js
+    entry_route: /dashboard
+    user_interactions:
+      - Drag blocks from sidebar to canvas
+      - Reorder blocks
+      - Edit block properties
+  - name: Booking Management
+    description: View and manage client bookings
+    files:
+      - dashboard.html
+      - js/supabase-db.js
+    entry_route: /dashboard
+    user_interactions:
+      - Click Bookings in sidebar
+      - View list of bookings
+      - Change booking status
+  - name: Contact Form
+    description: Submit contact inquiries
+    files:
+      - index.html
+      - js/script.js
+    entry_route: /
+    user_interactions:
+      - Fill contact form
+      - Click submit
+    api_calls:
+      - method: POST
+        endpoint: /api/contact
+known_limitations:
+  - issue: Missing loadTestimonials function
+    location: dashboard.html
+    impact: Dashboard fails to load testimonials, potentially causing script errors
+  - issue: Incorrect route in server.js
+    location: server.js
+    impact: /dashboard route tries to serve non-existent admin.html instead of dashboard.html

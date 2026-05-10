@@ -1,0 +1,52 @@
+[
+  {
+    "id": "TC001",
+    "title": "get_homepage_serving",
+    "description": "Verify that a GET request to / returns a 200 status code and serves the index.html page for the homepage without requiring authentication."
+  },
+  {
+    "id": "TC002",
+    "title": "get_services_page_serving",
+    "description": "Verify that a GET request to /services returns a 200 status code and serves the services.html page without requiring authentication."
+  },
+  {
+    "id": "TC003",
+    "title": "get_works_page_serving",
+    "description": "Verify that a GET request to /works returns a 200 status code and serves the works.html page without requiring authentication."
+  },
+  {
+    "id": "TC004",
+    "title": "get_about_page_serving",
+    "description": "Verify that a GET request to /about returns a 200 status code and serves the about.html page without requiring authentication."
+  },
+  {
+    "id": "TC005",
+    "title": "get_contact_page_serving",
+    "description": "Verify that a GET request to /contact returns a 200 status code and serves the contact.html page without requiring authentication."
+  },
+  {
+    "id": "TC006",
+    "title": "get_dashboard_page_serving",
+    "description": "Verify that a GET request to /dashboard returns a 200 status code and serves the admin-dashboard.html page without requiring authentication."
+  },
+  {
+    "id": "TC007",
+    "title": "post_contact_form_valid_submission",
+    "description": "Verify that a POST request to /api/contact with valid name, email, phone, service, and message fields returns a 200 status code with a success response confirming submission."
+  },
+  {
+    "id": "TC008",
+    "title": "post_contact_form_invalid_submission",
+    "description": "Verify that a POST request to /api/contact with missing or invalid fields returns a 400 status code with an error message explaining the validation failure."
+  },
+  {
+    "id": "TC009",
+    "title": "post_newsletter_valid_subscription",
+    "description": "Verify that a POST request to /api/newsletter with a valid email address returns a 200 status code with a success response confirming subscription."
+  },
+  {
+    "id": "TC010",
+    "title": "post_newsletter_invalid_subscription",
+    "description": "Verify that a POST request to /api/newsletter with an empty, invalid, or missing email field returns a 400 status code with an error message explaining the email validation issue."
+  }
+]

@@ -1,0 +1,84 @@
+/* =====================
+   BlurText Component - Custom Implementation
+   ===================== */
+
+.blur-text-container {
+    display: inline-block;
+    font-family: 'Stara', sans-serif;
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+}
+
+.blur-element {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(-30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.blur-space {
+    display: inline-block;
+    width: 0.3em;
+}
+
+/* Animation states */
+.blur-element.animated {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Direction variations */
+.blur-text-container.direction-top .blur-element {
+    transform: translateY(-30px);
+}
+
+.blur-text-container.direction-bottom .blur-element {
+    transform: translateY(30px);
+}
+
+.blur-text-container.direction-left .blur-element {
+    transform: translateX(-30px);
+}
+
+.blur-text-container.direction-right .blur-element {
+    transform: translateX(30px);
+}
+
+.blur-text-container.direction-center .blur-element {
+    transform: scale(0.8) translateY(-20px);
+}
+
+/* Utility classes */
+.text-2xl {
+    font-size: 2rem !important;
+}
+
+.mb-8 {
+    margin-bottom: 2rem !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .blur-text-container {
+        font-size: 3rem;
+    }
+    
+    .text-2xl {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .blur-text-container {
+        font-size: 2rem;
+    }
+    
+    .text-2xl {
+        font-size: 1.25rem !important;
+    }
+}

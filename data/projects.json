@@ -1,0 +1,207 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "nameAr": "تطوير هوية Qahwa Coffee",
+      "nameEn": "Qahwa Coffee Brand Development",
+      "categoryAr": "تطوير العلامة",
+      "categoryEn": "Brand Development",
+      "descriptionAr": "تطوير هوية بصرية كاملة لعلامة قهوة عصرية تشمل الشعار والألوان والخطوط والمواد التسويقية",
+      "descriptionEn": "Complete visual identity development for a modern coffee brand including logo, colors, fonts and marketing materials",
+      "client": "Qahwa Coffee",
+      "year": 2025,
+      "services": ["Logo Design", "Brand Guidelines", "Packaging Design"],
+      "image": "work-1.jpg"
+    },
+    {
+      "id": 2,
+      "nameAr": "هوية Tech Solutions الرقمية",
+      "nameEn": "Tech Solutions Digital Identity",
+      "categoryAr": "تصميم الشعارات",
+      "categoryEn": "Logo Design",
+      "descriptionAr": "تصميم شعار حديث وديناميكي لشركة تقنية، يعكس الابتكار والتطور. يتضمن عدة نسخ للاستخدام على وسائط مختلفة",
+      "descriptionEn": "Modern dynamic logo design for a tech company reflecting innovation. Includes multiple versions for different media",
+      "client": "Tech Solutions",
+      "year": 2025,
+      "services": ["Logo Design", "Brand Identity"],
+      "image": "work-2.jpg"
+    },
+    {
+      "id": 3,
+      "nameAr": "تصميم عبوات منتجات Organic Beauty",
+      "nameEn": "Organic Beauty Packaging Design",
+      "categoryAr": "تصميم الأغلفة",
+      "categoryEn": "Packaging Design",
+      "descriptionAr": "تصميم احترافي لعبوات منتجات العناية الطبيعية، يجمع بين الفخامة والبساطة مع تأكيد القيم البيئية",
+      "descriptionEn": "Professional packaging design for natural beauty products, combining luxury with simplicity and environmental values",
+      "client": "Organic Beauty Co.",
+      "year": 2025,
+      "services": ["Packaging Design", "Label Design"],
+      "image": "work-3.jpg"
+    },
+    {
+      "id": 4,
+      "nameAr": "فيديو ترويجي Fitness Pro Gym",
+      "nameEn": "Fitness Pro Gym Promotional Video",
+      "categoryAr": "الرسوميات المتحركة",
+      "categoryEn": "Motion Graphics",
+      "descriptionAr": "فيديو حركي احترافي لإعلان صالة الألعاب الرياضية يتضمن رسوميات متقنة وموسيقى جذابة وحركات سلسة",
+      "descriptionEn": "Professional motion graphics video for gym promotion featuring smooth animations and engaging visual effects",
+      "client": "Fitness Pro Gym",
+      "year": 2025,
+      "services": ["Motion Graphics", "Video Editing", "Animation"],
+      "image": "work-4.jpg"
+    },
+    {
+      "id": 5,
+      "nameAr": "موقع إلكتروني Luxury Hotels",
+      "nameEn": "Luxury Hotels E-Commerce Website",
+      "categoryAr": "تصميم المواقع",
+      "categoryEn": "Website Design",
+      "descriptionAr": "تصميم موقع ويب فاخر وحديث لسلسلة فنادق، يتضمن عرضاً جميلاً للغرف وخدمة الحجز السهلة",
+      "descriptionEn": "Luxury modern website design for hotel chain with beautiful room displays and easy booking service",
+      "client": "Luxury Hotels Group",
+      "year": 2024,
+      "services": ["Website Design", "UI/UX", "E-Commerce"],
+      "image": "work-5.jpg"
+    },
+    {
+      "id": 6,
+      "nameAr": "نمذجة ثلاثية الأبعاد للمنتجات",
+      "nameEn": "3D Product Modeling",
+      "categoryAr": "تصميم ثلاثي الأبعاد",
+      "categoryEn": "3D Design",
+      "descriptionAr": "نماذج ثلاثية الأبعاد احترافية للمنتجات تستخدم في الكتالوجات الرقمية والعروض التقديمية",
+      "descriptionEn": "Professional 3D product models used in digital catalogs and presentations",
+      "client": "Various Brands",
+      "year": 2024,
+      "services": ["3D Modeling", "Product Visualization"],
+      "image": "work-6.jpg"
+    },
+    {
+      "id": 7,
+      "nameAr": "استراتيجية العلامة Essentials",
+      "nameEn": "Essentials Brand Strategy",
+      "categoryAr": "تطوير العلامة",
+      "categoryEn": "Brand Development",
+      "descriptionAr": "تطوير شامل لعلامة تجارية جديدة يشمل البحث السوقي والتموضع والهوية البصرية الكاملة",
+      "descriptionEn": "Comprehensive new brand development including market research, positioning and complete visual identity",
+      "client": "Essentials Inc.",
+      "year": 2024,
+      "services": ["Brand Strategy", "Market Research", "Logo Design"],
+      "image": "work-7.jpg"
+    },
+    {
+      "id": 8,
+      "nameAr": "تصميم شعار Start-Up Hub",
+      "nameEn": "Start-Up Hub Logo Design",
+      "categoryAr": "تصميم الشعارات",
+      "categoryEn": "Logo Design",
+      "descriptionAr": "شعار أنيق وبسيط لمركز الشركات الناشئة يعكس الحركة والنمو والابتكار",
+      "descriptionEn": "Elegant minimalist logo for startup center reflecting movement, growth and innovation",
+      "client": "Start-Up Hub",
+      "year": 2024,
+      "services": ["Logo Design", "Brand Guidelines"],
+      "image": "work-8.jpg"
+    },
+    {
+      "id": 9,
+      "nameAr": "عبوات منتجات العطور Premium",
+      "nameEn": "Premium Fragrance Packaging",
+      "categoryAr": "تصميم الأغلفة",
+      "categoryEn": "Packaging Design",
+      "descriptionAr": "عبوات فاخرة للعطور تجمع بين الأناقة والفخامة مع استخدام تصاميم وخطوط راقية",
+      "descriptionEn": "Luxury fragrance packaging combining elegance with premium design and sophisticated typography",
+      "client": "Fragrance Premium",
+      "year": 2024,
+      "services": ["Packaging Design", "Label Design", "Printing"],
+      "image": "work-9.jpg"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "nameAr": "اختيار اسم العلامة التجارية",
+      "nameEn": "Brand Name Selection",
+      "descriptionAr": "اختيار اسم علامة تجارية فريد وسهل التذكر يعكس قيم عملك وشخصيته"
+    },
+    {
+      "id": 2,
+      "nameAr": "تطوير العلامة التجارية",
+      "nameEn": "Brand Development",
+      "descriptionAr": "تطوير هوية العلامة التجارية الكاملة من الألف إلى الياء بطريقة احترافية"
+    },
+    {
+      "id": 3,
+      "nameAr": "التخطيط والهيكلة",
+      "nameEn": "Brand Planning And Structuring",
+      "descriptionAr": "وضع استراتيجية شاملة وهيكل واضح لنمو علامتك التجارية"
+    },
+    {
+      "id": 4,
+      "nameAr": "إدارة العلامة التجارية",
+      "nameEn": "Brand Management",
+      "descriptionAr": "إدارة استمرارية العلامة التجارية وضمان اتساقها عبر جميع المنصات"
+    },
+    {
+      "id": 5,
+      "nameAr": "تصميم الشعار والهوية البصرية",
+      "nameEn": "Logo And Visual Identity Design",
+      "descriptionAr": "تصميم شعارات احترافية وهويات بصرية متكاملة تعكس جوهر علامتك"
+    },
+    {
+      "id": 6,
+      "nameAr": "تصميم ملف الشركة",
+      "nameEn": "Company Profile Design",
+      "descriptionAr": "تصميم ملفات تعريفية احترافية للشركة تترك انطباعاً إيجابياً"
+    },
+    {
+      "id": 7,
+      "nameAr": "تصميم الأغلفة",
+      "nameEn": "Packaging Design",
+      "descriptionAr": "تصميم أغلفة منتجات جذابة وعملية تعزز المبيعات"
+    },
+    {
+      "id": 8,
+      "nameAr": "الرسوميات المتحركة",
+      "nameEn": "Motion Graphics Design",
+      "descriptionAr": "إنتاج رسوميات حركية احترافية للفيديوهات والإعلانات"
+    },
+    {
+      "id": 9,
+      "nameAr": "تصميم ثلاثي الأبعاد",
+      "nameEn": "3D & Modeling Design",
+      "descriptionAr": "تصميم نماذج ثلاثية الأبعاد متقدمة للمنتجات والمشاريع"
+    },
+    {
+      "id": 10,
+      "nameAr": "تصميم اللافتات والملصقات",
+      "nameEn": "Signage And Poster Design",
+      "descriptionAr": "تصميم لافتات وملصقات احترافية ذات تأثير بصري قوي"
+    },
+    {
+      "id": 11,
+      "nameAr": "الخط العربي والإنجليزي",
+      "nameEn": "Arabic / English Calligraphy",
+      "descriptionAr": "خط عربي وإنجليزي فني احترافي يضيف لمسة فنية عالية"
+    },
+    {
+      "id": 12,
+      "nameAr": "تصميم الفيديو",
+      "nameEn": "Video Design",
+      "descriptionAr": "إنتاج وتصميم فيديوهات احترافية قصيرة وطويلة"
+    },
+    {
+      "id": 13,
+      "nameAr": "تصميم المواقع الإلكترونية",
+      "nameEn": "Website Design",
+      "descriptionAr": "تصميم مواقع ويب عصرية وسريعة الأداء وسهلة الاستخدام"
+    },
+    {
+      "id": 14,
+      "nameAr": "حملات التواصل الاجتماعي",
+      "nameEn": "Social Media Campaign",
+      "descriptionAr": "تصميم وتنفيذ حملات وسائط اجتماعية فعالة ومؤثرة"
+    }
+  ]
+}

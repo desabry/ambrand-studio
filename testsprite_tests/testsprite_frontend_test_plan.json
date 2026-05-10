@@ -1,0 +1,691 @@
+[
+  {
+    "id": "TC001",
+    "title": "Sign in and reach the protected dashboard",
+    "description": "An authenticated admin can log in through the auth page and access the protected dashboard without being blocked.",
+    "category": "User Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the protected dashboard is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify admin controls are available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Submit an inquiry from the contact form",
+    "description": "Verify a visitor can submit a valid contact inquiry and receive a success confirmation after submission.",
+    "category": "Contact Form Submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a valid inquiry message"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the form submission completes"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Navigate the home page sections and submit an inquiry",
+    "description": "A prospective client can move through the main home page sections and submit the contact form, ending with a visible confirmation.",
+    "category": "Public Landing Experience",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the services section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the portfolio section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the testimonials section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the FAQ section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the contact section"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a valid inquiry"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a confirmation message is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the inquiry is no longer shown as unsent"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Block unauthenticated dashboard access",
+    "description": "A visitor who is not signed in cannot open the protected dashboard and is redirected or blocked from seeing admin content.",
+    "category": "Admin Dashboard Access",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify access to the protected area is blocked"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard content is not visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Navigate the landing page sections",
+    "description": "Verify a visitor can move through the main landing page sections and reach the contact area from the home page.",
+    "category": "Public Landing Page Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the services section"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the portfolio section"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the testimonials section"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the FAQ section"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the contact section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact section is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the landing page sections are accessible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Open the portfolio gallery from the home page",
+    "description": "A visitor can use the home page to reach the portfolio gallery and see portfolio work displayed.",
+    "category": "Public Landing Experience",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the portfolio page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify portfolio projects are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Filter portfolio projects by category",
+    "description": "A visitor can filter the works gallery by category and see only matching projects displayed.",
+    "category": "Portfolio Gallery",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /works"
+      },
+      {
+        "type": "action",
+        "description": "Select a portfolio category filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify matching portfolio projects are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify non-matching projects are hidden"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "View bookings in the dashboard",
+    "description": "This verifies that an authenticated staff user can open the protected dashboard and see the list of client bookings.",
+    "category": "Booking Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the bookings section in the dashboard sidebar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the bookings list is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Browse portfolio projects by category",
+    "description": "Verify a visitor can filter the portfolio gallery to see only projects in a chosen category.",
+    "category": "Portfolio Gallery and Project Filtering",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /works"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid portfolio category filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the gallery updates to show matching projects"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify unrelated projects are hidden"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Review bookings and update a booking status",
+    "description": "An authenticated staff member can open bookings in the dashboard, change a booking status, and see the updated status persist in the list.",
+    "category": "Admin Dashboard Access",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the dashboard"
+      },
+      {
+        "type": "action",
+        "description": "Open the bookings view"
+      },
+      {
+        "type": "action",
+        "description": "Select a different booking status for a booking"
+      },
+      {
+        "type": "action",
+        "description": "Save the booking update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated booking status is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the bookings list remains displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Update a booking status",
+    "description": "This verifies that an authenticated staff user can change a booking status and see the updated state reflected in the dashboard.",
+    "category": "Booking Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the bookings section in the dashboard sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Change a booking status"
+      },
+      {
+        "type": "action",
+        "description": "Save the booking update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the booking status update is reflected"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Add and arrange project blocks in the builder",
+    "description": "An authenticated admin can drag blocks into the project canvas, reorder them, and see the edited builder state reflected on screen.",
+    "category": "Project Builder",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the dashboard"
+      },
+      {
+        "type": "action",
+        "description": "Drag a content block from the sidebar into the canvas"
+      },
+      {
+        "type": "action",
+        "description": "Reorder a block within the canvas"
+      },
+      {
+        "type": "action",
+        "description": "Edit a block property"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the builder reflects the added and reordered blocks"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the edited block property is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Open the contact page and see the inquiry form",
+    "description": "A visitor can open the contact page and access the inquiry form needed to contact the studio.",
+    "category": "Contact Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact form is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC014",
+    "title": "See a no-results state in the portfolio filter",
+    "description": "Verify a visitor sees an empty state when selecting a portfolio category with no matching projects.",
+    "category": "Portfolio Gallery and Project Filtering",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /works"
+      },
+      {
+        "type": "action",
+        "description": "Select a category with no matching projects"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a no-results state is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the gallery does not show matching projects"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC015",
+    "title": "Open the about page",
+    "description": "A visitor can open the about page and see studio background information.",
+    "category": "About Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /about"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify about page content is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC016",
+    "title": "Handle an empty portfolio filter result",
+    "description": "A visitor applying a category with no matches sees an empty state instead of a broken gallery.",
+    "category": "Portfolio Gallery",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /works"
+      },
+      {
+        "type": "action",
+        "description": "Select a portfolio category filter with no matches"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify portfolio projects are not displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC017",
+    "title": "Keep booking unchanged when status update is invalid",
+    "description": "This verifies that an authenticated staff user is prevented from saving an invalid booking change and the original booking remains unchanged.",
+    "category": "Booking Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the bookings section in the dashboard sidebar"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to change a booking status to an invalid value"
+      },
+      {
+        "type": "action",
+        "description": "Save the booking update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a booking status validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the booking remains unchanged"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC018",
+    "title": "Show validation errors for incomplete contact form submission",
+    "description": "Verify a visitor sees form validation feedback when submitting the contact form without required information.",
+    "category": "Contact Form Submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form without entering required details"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the form remains available for correction"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC019",
+    "title": "Show the builder error state when required dashboard data is missing",
+    "description": "An authenticated admin opening the dashboard with missing required builder data sees a graceful error state instead of a broken builder.",
+    "category": "Project Builder",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a builder error state is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the builder remains usable only for non-dependent dashboard content"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC020",
+    "title": "Ignore an invalid section anchor on the home page",
+    "description": "Verify a visitor stays on the landing page when trying to open a missing section anchor and the page content does not change unexpectedly.",
+    "category": "Public Landing Page Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link for an invalid section anchor"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the landing page remains visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no new section content is displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC021",
+    "title": "Reject invalid login credentials",
+    "description": "A visitor using invalid credentials sees a login failure message and does not gain access.",
+    "category": "User Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /auth"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with an invalid email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with an invalid password"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a login failure message is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify protected dashboard content is not visible"
+      }
+    ],
+    "priority": "Low"
+  }
+]
