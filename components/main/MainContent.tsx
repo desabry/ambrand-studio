@@ -50,6 +50,13 @@ export function MainContent() {
         }
       }
 
+      // Init auth forms (DOMContentLoaded already fired, so manually init)
+      if (typeof (window as any).initAuthForms === "function") {
+        (window as any).initAuthForms();
+      } else {
+        initAuthFormsFallback();
+      }
+
       // Init hero text pressure
       if (typeof (window as any).initTextPressure === "function") {
         (window as any).initTextPressure("hero-title-pressure", {
@@ -64,6 +71,11 @@ export function MainContent() {
           strokeColor: "#5227FF",
           minFontSize: 36,
         });
+      }
+
+      // Check auth state
+      if (typeof (window as any).checkAuthState === "function") {
+        (window as any).checkAuthState();
       }
 
       // Init contact form
@@ -102,6 +114,60 @@ export function MainContent() {
           )
           .join("");
       }
+    }
+  }
+
+  function initAuthFormsFallback() {
+    const loginForm = document.getElementById("loginForm");
+    if (loginForm && !(loginForm as any)._authBound) {
+      (loginForm as any)._authBound = true;
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = (document.getElementById("loginEmail") as HTMLInputElement)?.value;
+        const password = (document.getElementById("loginPassword") as HTMLInputElement)?.value;
+        const result = await (window as any).signIn?.(email, password);
+        if (result?.success) {
+          (window as any).closeAuthModal?.();
+          window.location.href = "/";
+        } else {
+          alert("Login failed: " + (result?.error || "Unknown error"));
+        }
+      });
+    }
+    const signupForm = document.getElementById("signupForm");
+    if (signupForm && !(signupForm as any)._authBound) {
+      (signupForm as any)._authBound = true;
+      signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = (document.getElementById("signupName") as HTMLInputElement)?.value;
+        const email = (document.getElementById("signupEmail") as HTMLInputElement)?.value;
+        const password = (document.getElementById("signupPassword") as HTMLInputElement)?.value;
+        const result = await (window as any).signUp?.(email, password, name);
+        if (result?.success) {
+          alert("Signup successful! Please check your email to verify your account.");
+          (window as any).closeAuthModal?.();
+        } else {
+          alert("Signup failed: " + (result?.error || "Unknown error"));
+        }
+      });
+    }
+    if (typeof (window as any).switchToLogin !== "function") {
+      (window as any).switchToLogin = function () {
+        document.getElementById("signupForm")?.classList.add("hidden");
+        document.getElementById("loginForm")?.classList.remove("hidden");
+        document.getElementById("authTitle")!.textContent = "Login";
+        document.getElementById("authSwitchText")!.innerHTML =
+          'Don\'t have an account? <a href="#" onclick="switchToSignup()">Sign up</a>';
+      };
+    }
+    if (typeof (window as any).switchToSignup !== "function") {
+      (window as any).switchToSignup = function () {
+        document.getElementById("loginForm")?.classList.add("hidden");
+        document.getElementById("signupForm")?.classList.remove("hidden");
+        document.getElementById("authTitle")!.textContent = "Sign Up";
+        document.getElementById("authSwitchText")!.innerHTML =
+          'Already have an account? <a href="#" onclick="switchToLogin()">Login</a>';
+      };
     }
   }
 

@@ -68,7 +68,7 @@ async function signOut() {
     try {
         const { error } = await supabaseClient.auth.signOut();
         if (error) throw error;
-        window.location.href = '/';
+        window.location.href = 'index.html';
         return { success: true };
     } catch (err) {
         console.error('Signout error:', err.message);
@@ -122,11 +122,11 @@ function switchToLogin() {
     document.getElementById('authSwitchText').innerHTML = 'Don\'t have an account? <a href="#" onclick="switchToSignup()">Sign up</a>';
 }
 
-// Manually callable init function (for Next.js where DOMContentLoaded already fired)
-function initAuthForms() {
+// Form Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Login form
     const loginForm = document.getElementById('loginForm');
-    if (loginForm && !loginForm._authBound) {
-        loginForm._authBound = true;
+    if (loginForm) {
         loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value;
@@ -134,17 +134,16 @@ function initAuthForms() {
             
             const result = await signIn(email, password);
             if (result.success) {
-                closeAuthModal();
-                window.location.href = '/';
+                window.location.href = '/dashboard';
             } else {
                 alert('Login failed: ' + result.error);
             }
         });
     }
 
+    // Signup form
     const signupForm = document.getElementById('signupForm');
-    if (signupForm && !signupForm._authBound) {
-        signupForm._authBound = true;
+    if (signupForm) {
         signupForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const name = document.getElementById('signupName').value;
@@ -161,12 +160,8 @@ function initAuthForms() {
         });
     }
 
+    // Check if user is already logged in
     checkAuthState();
-}
-
-// Form Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-    initAuthForms();
 });
 
 async function checkAuthState() {
