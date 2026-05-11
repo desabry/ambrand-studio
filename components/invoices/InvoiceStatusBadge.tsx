@@ -1,4 +1,4 @@
-import { cn } from "@/app/layout";
+import { cn } from "@/lib/cn";
 import { PaymentStatus } from "@/types/invoice";
 
 interface Props {

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Plus, Trash2, Save, X, Calculator } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Client, InvoiceItem, PaymentStatus } from "@/types/invoice";
-import { cn } from "@/app/layout";
+import { cn } from "@/lib/cn";
 
 interface Props {
   initialData?: any;

@@ -134,8 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const result = await signIn(email, password);
             if (result.success) {
-                alert('Login successful! Redirecting to dashboard...');
-                window.location.href = 'dashboard.html';
+                window.location.href = '/dashboard';
             } else {
                 alert('Login failed: ' + result.error);
             }
@@ -180,7 +179,7 @@ function updateUIForLoggedInUser(userData) {
         const loginLink = navMenu.querySelector('a[onclick="openAuthModal()"]');
         if (loginLink) {
             loginLink.textContent = 'Dashboard';
-            loginLink.setAttribute('href', 'dashboard.html');
+            loginLink.setAttribute('href', '/dashboard');
             loginLink.removeAttribute('onclick');
         }
     }

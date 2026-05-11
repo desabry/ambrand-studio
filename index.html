@@ -703,20 +703,7 @@
 
         // Initialize dynamic logic
         async function initializeApp() {
-            // Check auth status for nav
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            const navAuthLink = document.getElementById('navAuthLink');
-            const navAdminLink = document.getElementById('navAdminLink');
-
-            if (session) {
-                navAuthLink.innerHTML = `<a href="#" onclick="signOut()" class="nav-link">Logout</a>`;
-                
-                // Check if admin from user metadata
-                const userRole = session.user.user_metadata?.role || 'user';
-                if (userRole === 'provider') {
-                    navAdminLink.classList.remove('hidden');
-                }
-            }
+            // Auth state is handled by auth.js checkAuthState()
 
             // Load Projects
             const success = await loadProjectsFromDB();

@@ -1,15 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Plus, Search, Filter, Download, MoreVertical, Eye, Trash2, CheckCircle, Edit } from "lucide-react";
+import { Plus, Search, Filter } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Invoice, PaymentStatus } from "@/types/invoice";
 import { RevenueSummary } from "@/components/invoices/RevenueSummary";
-import { InvoiceStatusBadge } from "@/components/invoices/InvoiceStatusBadge";
-import { format } from "date-fns";
+import { InvoiceCard } from "@/components/invoices/InvoiceCard";
 import Link from "next/link";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import { InvoicePDF } from "@/components/invoices/InvoicePDF";
 
 export default function InvoicesPage() {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
@@ -139,92 +136,43 @@ export default function InvoicesPage() {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="card overflow-x-auto">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-surface-50 border-b border-surface-200">
-              <th className="px-6 py-4 text-xs font-semibold text-surface-500 uppercase tracking-wider">Invoice Number</th>
-              <th className="px-6 py-4 text-xs font-semibold text-surface-500 uppercase tracking-wider">Client Name</th>
-              <th className="px-6 py-4 text-xs font-semibold text-surface-500 uppercase tracking-wider">Amount</th>
-              <th className="px-6 py-4 text-xs font-semibold text-surface-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-4 text-xs font-semibold text-surface-500 uppercase tracking-wider">Due Date</th>
-              <th className="px-6 py-4 text-xs font-semibold text-surface-500 uppercase tracking-wider text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-surface-200">
-            {loading ? (
-              [...Array(5)].map((_, i) => (
-                <tr key={i} className="animate-pulse">
-                  <td colSpan={6} className="px-6 py-4">
-                    <div className="h-4 bg-surface-100 rounded w-full"></div>
-                  </td>
-                </tr>
-              ))
-            ) : filteredInvoices.length === 0 ? (
-              <tr>
-                <td colSpan={6} className="px-6 py-12 text-center text-surface-500">
-                  No invoices found.
-                </td>
-              </tr>
-            ) : (
-              filteredInvoices.map((inv) => (
-                <tr key={inv.id} className="hover:bg-surface-50 transition-colors group">
-                  <td className="px-6 py-4 font-medium text-surface-900">{inv.invoice_number}</td>
-                  <td className="px-6 py-4">
-                    <div className="flex flex-col">
-                      <span className="text-surface-900 font-medium">{inv.clients?.company_name}</span>
-                      <span className="text-xs text-surface-500">{inv.clients?.email}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 font-semibold text-surface-900">
-                    ${Number(inv.total).toLocaleString(undefined, { minimumFractionDigits: 2 })}
-                  </td>
-                  <td className="px-6 py-4">
-                    <InvoiceStatusBadge status={inv.payment_status} />
-                  </td>
-                  <td className="px-6 py-4 text-surface-600 text-sm">
-                    {format(new Date(inv.due_date), "MMM d, yyyy")}
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Link href={`/dashboard/invoices/${inv.id}`} className="p-2 text-surface-500 hover:text-brand hover:bg-brand-light rounded-lg transition-all" title="View">
-                        <Eye size={18} />
-                      </Link>
-                      <Link href={`/dashboard/invoices/${inv.id}/edit`} className="p-2 text-surface-500 hover:text-brand hover:bg-brand-light rounded-lg transition-all" title="Edit">
-                        <Edit size={18} />
-                      </Link>
-                      {inv.payment_status !== 'paid' && (
-                        <button 
-                          onClick={() => handleMarkAsPaid(inv.id)}
-                          className="p-2 text-surface-500 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all" 
-                          title="Mark as Paid"
-                        >
-                          <CheckCircle size={18} />
-                        </button>
-                      )}
-                      <PDFDownloadLink document={<InvoicePDF invoice={inv} />} fileName={`Invoice-${inv.invoice_number}.pdf`}>
-                        {({ loading }) => (
-                          <button className="p-2 text-surface-500 hover:text-surface-700 hover:bg-surface-100 rounded-lg transition-all" title="Download PDF" disabled={loading}>
-                            <Download size={18} />
-                          </button>
-                        )}
-                      </PDFDownloadLink>
-                      <button 
-                        onClick={() => handleDelete(inv.id)}
-                        className="p-2 text-surface-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all" 
-                        title="Delete"
-                      >
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+      {/* Visual Grid */}
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="card animate-pulse p-5 space-y-3">
+              <div className="h-4 bg-surface-100 rounded w-1/2" />
+              <div className="h-6 bg-surface-100 rounded w-1/3" />
+              <div className="h-3 bg-surface-100 rounded w-1/4" />
+            </div>
+          ))}
+        </div>
+      ) : filteredInvoices.length === 0 ? (
+        <div className="card p-12 text-center">
+          <div className="text-5xl mb-4">📄</div>
+          <h3 className="text-lg font-semibold text-surface-900 mb-2">No invoices found</h3>
+          <p className="text-surface-500 mb-6">
+            {search || statusFilter !== "all" ? "Try different search or filter criteria." : "Get started by creating your first invoice."}
+          </p>
+          {!search && statusFilter === "all" && (
+            <Link href="/dashboard/invoices/new" className="btn-primary inline-flex">
+              <Plus size={18} />
+              Create Invoice
+            </Link>
+          )}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {filteredInvoices.map((inv) => (
+            <InvoiceCard
+              key={inv.id}
+              invoice={inv}
+              onMarkAsPaid={handleMarkAsPaid}
+              onDelete={handleDelete}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
