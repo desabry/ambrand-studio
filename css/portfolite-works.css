@@ -118,9 +118,19 @@
 
     border-color: var(--text-light);
 
-    color: var(--text-light);
+    color: #e31937;
 
     transform: translateY(-2px);
+
+}
+
+.filter-btn.active {
+
+    background: var(--text-light);
+
+    color: #e31937;
+
+    border-color: var(--text-light);
 
 }
 
@@ -130,7 +140,7 @@
 
     background: var(--text-light);
 
-    color: var(--bg-dark);
+    color: e31937;
 
     border-color: var(--text-light);
 

@@ -1217,7 +1217,7 @@ body.home-fullscreen {
 .filter-btn:hover {
     background: var(--text-light);
     border-color: var(--text-light);
-    color: var(--bg-dark);
+    color: #e31937;
     transform: translateY(-2px);
 }
 
