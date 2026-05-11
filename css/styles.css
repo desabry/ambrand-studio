@@ -2652,8 +2652,8 @@ section {
    Professional Footer
    ===================== */
 footer {
-    background: linear-gradient(135deg, #e8e9e9 0%, #f3f4f4 50%, #e8e9e9 100%);
-    color: #222222;
+    background: #e31937;
+    color: #ffffff;
     padding: 80px 0 40px;
     position: relative;
     overflow: hidden;
@@ -3077,7 +3077,7 @@ footer .container {
     font-size: 2.5rem;
     font-weight: 800;
     text-transform: uppercase;
-    color: var(--text-light);
+    color: #e31937;
     margin: 0 3rem;
     display: flex;
     align-items: center;
@@ -3086,7 +3086,7 @@ footer .container {
 
 .marquee-item::after {
     content: '•';
-    color: var(--secondary-color);
+    color: #e31937;
     margin-left: 3rem;
 }
 
