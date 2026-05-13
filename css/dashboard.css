@@ -226,14 +226,13 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--primary);
-    color: white;
+    background-color: #fdfdfd;
+    color: #1a1a1a;
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-hover);
+    background-color: #ffffff;
     transform: translateY(-1px);
-    box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary {
@@ -271,6 +270,7 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     border: 2px dashed var(--border-light);
     border-radius: var(--radius-lg);
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
 }
 
@@ -305,14 +305,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-sm);
 }
 
 .quick-add-btn:hover {
     border-color: var(--primary);
     color: var(--primary);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
 }
 
 /* Right Sidebar */
@@ -404,7 +402,6 @@ body {
 .block-item:hover {
     border-color: var(--text-muted);
     background-color: var(--bg-white);
-    box-shadow: var(--shadow-sm);
 }
 
 .block-item:active {
@@ -446,7 +443,7 @@ body {
     font-family: var(--font-main);
     font-size: 0.875rem;
     color: var(--text-main);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s;
 }
 
 .form-group input:focus,
@@ -454,7 +451,6 @@ body {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(227, 25, 55, 0.1);
 }
 
 /* Toggles */
@@ -496,7 +492,6 @@ body {
     background-color: white;
     border-radius: 50%;
     transition: .4s;
-    box-shadow: var(--shadow-sm);
 }
 
 input:checked + .slider {
@@ -609,18 +604,15 @@ input:checked + .slider:before {
     border-radius: var(--radius-md);
     margin-bottom: 24px;
     position: relative;
-    box-shadow: var(--shadow-sm);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s;
 }
 
 .canvas-block:hover {
     border-color: #D1D5DB;
-    box-shadow: var(--shadow-md);
 }
 
 .canvas-block.active {
     border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(227, 25, 55, 0.1);
 }
 
 .block-header {
