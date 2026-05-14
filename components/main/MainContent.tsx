@@ -113,6 +113,12 @@ export function MainContent() {
           </div>`
           )
           .join("");
+
+        // Apply active filter to new items
+        const activeBtn = document.querySelector(".filter-btn.active");
+        if (activeBtn && typeof (window as any).applyFilter === "function") {
+          (window as any).applyFilter(activeBtn.getAttribute("data-filter"));
+        }
       }
     }
   }

@@ -148,44 +148,48 @@ async function seedSampleData() {
     try {
         // Seed projects
         console.log('📁 Adding sample projects...');
+        let seededCount = 0;
         for (const project of sampleProjects) {
             const result = await dbSaveProject(project);
             if (result) {
-                console.log(`✅ Added project: ${project.title}`);
-            } else {
-                console.error(`❌ Failed to add project: ${project.title}`);
+                seededCount++;
             }
+        }
+        if (seededCount > 0) {
+            console.log(`✅ Seeded ${seededCount} projects to Supabase`);
+        } else {
+            console.log('ℹ️ No projects seeded (RLS or DB issue — fallback data will be used)');
         }
         
         // Seed clients
-        console.log('👥 Adding sample clients...');
-        for (const client of sampleClients) {
-            const { data, error } = await supabaseClient
-                .from('clients')
-                .insert(client)
-                .select()
-                .single();
-                
-            if (error) {
-                console.error(`❌ Failed to add client: ${client.name}`, error);
-            } else {
-                console.log(`✅ Added client: ${client.name}`);
+        if (sampleClients.length > 0) {
+            console.log('👥 Adding sample clients...');
+            for (const client of sampleClients) {
+                const { data, error } = await supabaseClient
+                    .from('clients')
+                    .insert(client)
+                    .select()
+                    .single();
+                    
+                if (error) {
+                    console.warn(`⚠️ Skipped client: ${client.name}`);
+                }
             }
         }
         
         // Seed testimonials
-        console.log('⭐ Adding sample testimonials...');
-        for (const testimonial of sampleTestimonials) {
-            const { data, error } = await supabaseClient
-                .from('testimonials')
-                .insert(testimonial)
-                .select()
-                .single();
-                
-            if (error) {
-                console.error(`❌ Failed to add testimonial: ${testimonial.name}`, error);
-            } else {
-                console.log(`✅ Added testimonial: ${testimonial.name}`);
+        if (sampleTestimonials.length > 0) {
+            console.log('⭐ Adding sample testimonials...');
+            for (const testimonial of sampleTestimonials) {
+                const { data, error } = await supabaseClient
+                    .from('testimonials')
+                    .insert(testimonial)
+                    .select()
+                    .single();
+                    
+                if (error) {
+                    console.warn(`⚠️ Skipped testimonial: ${testimonial.name}`);
+                }
             }
         }
         
