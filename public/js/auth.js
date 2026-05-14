@@ -68,7 +68,7 @@ async function signOut() {
     try {
         const { error } = await supabaseClient.auth.signOut();
         if (error) throw error;
-        window.location.href = 'index.html';
+        window.location.href = '/';
         return { success: true };
     } catch (err) {
         console.error('Signout error:', err.message);
@@ -122,11 +122,11 @@ function switchToLogin() {
     document.getElementById('authSwitchText').innerHTML = 'Don\'t have an account? <a href="#" onclick="switchToSignup()">Sign up</a>';
 }
 
-// Form Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-    // Login form
+// Manually callable init function (for Next.js where DOMContentLoaded already fired)
+function initAuthForms() {
     const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
+    if (loginForm && !loginForm._authBound) {
+        loginForm._authBound = true;
         loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value;
@@ -134,16 +134,17 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const result = await signIn(email, password);
             if (result.success) {
-                window.location.href = '/dashboard';
+                closeAuthModal();
+                window.location.href = '/';
             } else {
                 alert('Login failed: ' + result.error);
             }
         });
     }
 
-    // Signup form
     const signupForm = document.getElementById('signupForm');
-    if (signupForm) {
+    if (signupForm && !signupForm._authBound) {
+        signupForm._authBound = true;
         signupForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const name = document.getElementById('signupName').value;
@@ -160,8 +161,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Check if user is already logged in
     checkAuthState();
+}
+
+// Form Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+    initAuthForms();
 });
 
 async function checkAuthState() {
@@ -173,7 +178,6 @@ async function checkAuthState() {
 }
 
 function updateUIForLoggedInUser(userData) {
-    // Update the Login link to show Dashboard link
     const navLoginItem = document.getElementById('nav-login-item');
     if (navLoginItem) {
         navLoginItem.innerHTML = '<a href="/dashboard" class="nav-link">Dashboard</a>';

@@ -15,7 +15,7 @@ export function MainContent() {
         "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2",
         "js/supabase-config.js",
         "js/text-letter-filler.js",
-        "js/blur-text.js",
+        "js/BlurText.js",
         "js/auth.js",
         "js/supabase-db.js",
         "js/seed-data.js",

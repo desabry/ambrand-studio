@@ -56,16 +56,7 @@ export default function ProjectsPage() {
   const seedDemoProject = async () => {
     const demo = {
       title: "Qahwa Coffee Branding",
-      client: "Qahwa Coffee",
-      category: "Branding",
-      status: "Published",
       description: "A complete brand identity for a premium coffee brand, including logo design, packaging, and digital presence.",
-      cover_url: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=800&h=600",
-      emoji: "☕",
-      tags: ["branding", "premium", "coffee"],
-      date: new Date().toISOString().split("T")[0],
-      project_url: "#",
-      updated_at: new Date().toISOString(),
     };
     const { error } = await supabase.from("projects").insert(demo);
     if (error) {

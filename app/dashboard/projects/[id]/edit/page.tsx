@@ -37,7 +37,10 @@ export default function EditProjectPage() {
     const { blocks, ...projectData } = formData;
     const { error } = await supabase
       .from("projects")
-      .update({ ...projectData, updated_at: new Date().toISOString() })
+      .update({
+        title: projectData.title || "",
+        description: projectData.description || "",
+      })
       .eq("id", params.id);
 
     setIsSaving(false);

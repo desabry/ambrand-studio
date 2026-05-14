@@ -14,8 +14,8 @@ export default function NewProjectPage() {
     setIsSaving(true);
     const { blocks, ...projectData } = data;
     const { error } = await supabase.from("projects").insert({
-      ...projectData,
-      updated_at: new Date().toISOString(),
+      title: projectData.title || "",
+      description: projectData.description || "",
     });
     setIsSaving(false);
 

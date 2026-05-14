@@ -2,13 +2,12 @@
   "name": "ambrand-studio",
   "version": "1.0.0",
   "description": "Ambrand Studio - Professional Branding & Design Agency Website",
-  "main": "server.js",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "server": "node server.js"
+    "lint": "next lint"
   },
   "keywords": [
     "branding",

@@ -54,23 +54,11 @@ async function loadProjectsFromDB() {
 async function dbSaveProject(projectData, existingId) {
   const record = {
     title: projectData.title,
-    client: projectData.client,
-    category: projectData.category,
-    status: projectData.status,
-    date: projectData.date,
-    description: projectData.desc,
-    tags: projectData.tags,
-    views: projectData.views || 0,
-    likes: projectData.likes || 0,
-    cover_url: projectData.cover || '',
-    emoji: projectData.emoji,
-    project_url: projectData.url || '',
-    updated_at: new Date().toISOString()
+    description: projectData.desc || projectData.description,
   };
 
   try {
     if (existingId) {
-      // Update existing project
       const { data, error } = await supabaseClient
         .from('projects')
         .update(record)
@@ -82,7 +70,6 @@ async function dbSaveProject(projectData, existingId) {
       console.log('✅ Project updated in Supabase:', data.id);
       return data;
     } else {
-      // Insert new project
       const { data, error } = await supabaseClient
         .from('projects')
         .insert(record)
