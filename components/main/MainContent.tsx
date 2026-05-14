@@ -272,11 +272,11 @@ export function MainContent() {
           </button>
           <ul className="nav-menu" id="navMenu">
             <li><a href="#home" className="active nav-link">Home</a></li>
+            <li><a href="#about" className="nav-link">About</a></li>
             <li><a href="#services" className="nav-link">Services</a></li>
             <li><a href="#works" className="nav-link">Works</a></li>
-            <li><a href="#about" className="nav-link">About</a></li>
             <li><a href="#contact" className="nav-link">Contact</a></li>
-            <li><a href="#" onClick={() => (window as any).openAuthModal?.()} className="nav-link">Login</a></li>
+            <li id="nav-login-item"><a href="#" onClick={() => (window as any).openAuthModal?.()} className="nav-link">Login</a></li>
           </ul>
         </div>
       </nav>
@@ -290,39 +290,8 @@ export function MainContent() {
         </div>
       </section>
 
-      {/* Services Marquee */}
-      <div className="marquee-container">
-        <div className="marquee-content">
-          {["Branding", "Packaging", "Digital Design", "Motion Graphics", "3D Modeling", "UI/UX Design"].map((item) => (
-            <div key={item} className="marquee-item">{item}</div>
-          ))}
-          {/* Duplicate for infinite loop */}
-          {["Branding", "Packaging", "Digital Design", "Motion Graphics", "3D Modeling", "UI/UX Design"].map((item) => (
-            <div key={`dup-${item}`} className="marquee-item">{item}</div>
-          ))}
-        </div>
-      </div>
 
-      {/* Logo Loop */}
-      <section className="logo-loop-section">
-        <div className="container">
-          <div className="logo-loop-container">
-            <div className="logo-loop-track">
-              {logos.map((logo, i) => (
-                <div key={i} className="logo-item-wrapper">
-                  <img src={logo.src} alt={logo.alt} />
-                </div>
-              ))}
-              {/* Duplicate for infinite loop */}
-              {logos.map((logo, i) => (
-                <div key={`dup-${i}`} className="logo-item-wrapper">
-                  <img src={logo.src} alt={logo.alt} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* About */}
       <section id="about" className="about-section-new">
@@ -421,8 +390,20 @@ export function MainContent() {
             {/* Projects loaded dynamically by Supabase */}
           </div>
         </div>
-      </section>
 
+      </section>
+      {/* Services Marquee */}
+      <div className="marquee-container">
+        <div className="marquee-content">
+          {["Branding", "Packaging", "Digital Design", "Motion Graphics", "3D Modeling", "UI/UX Design"].map((item) => (
+            <div key={item} className="marquee-item">{item}</div>
+          ))}
+          {/* Duplicate for infinite loop */}
+          {["Branding", "Packaging", "Digital Design", "Motion Graphics", "3D Modeling", "UI/UX Design"].map((item) => (
+            <div key={`dup-${item}`} className="marquee-item">{item}</div>
+          ))}
+        </div>
+      </div>
       {/* Testimonials */}
       <section className="clients-testimonials">
         <div className="container">
@@ -516,6 +497,27 @@ export function MainContent() {
 
       {/* Footer */}
       <footer className="footer">
+        {/* Logo Loop */}
+        <section className="logo-loop-section">
+          <div className="container">
+            <div className="logo-loop-container">
+              <div className="logo-loop-track">
+                {logos.map((logo, i) => (
+                  <div key={i} className="logo-item-wrapper">
+                    <img src={logo.src} alt={logo.alt} />
+                  </div>
+                ))}
+                {/* Duplicate for infinite loop */}
+                {logos.map((logo, i) => (
+                  <div key={`dup-${i}`} className="logo-item-wrapper">
+                    <img src={logo.src} alt={logo.alt} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <div className="container">
           <a href="#home">
             <img src="images/navbar-logo.png" alt="Ambrand Studio Logo" className="footer-logo-img" />

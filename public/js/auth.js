@@ -174,13 +174,8 @@ async function checkAuthState() {
 
 function updateUIForLoggedInUser(userData) {
     // Update the Login link to show Dashboard link
-    const navMenu = document.getElementById('navMenu');
-    if (navMenu) {
-        const loginLink = navMenu.querySelector('a[onclick="openAuthModal()"]');
-        if (loginLink) {
-            loginLink.textContent = 'Dashboard';
-            loginLink.setAttribute('href', '/dashboard');
-            loginLink.removeAttribute('onclick');
-        }
+    const navLoginItem = document.getElementById('nav-login-item');
+    if (navLoginItem) {
+        navLoginItem.innerHTML = '<a href="/dashboard" class="nav-link">Dashboard</a>';
     }
 }
