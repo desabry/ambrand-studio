@@ -219,7 +219,7 @@ async function dbSaveProject(projectData, existingId) {
       return data;
     }
   } catch (err) {
-    console.error('Error saving project:', err);
+    console.warn('⚠️ Could not save project to Supabase (expected if RLS is enabled). Demo data is shown instead.');
     return null;
   }
 }

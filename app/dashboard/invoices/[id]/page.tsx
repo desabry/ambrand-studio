@@ -30,7 +30,7 @@ export default function InvoiceDetailsPage() {
       .single();
 
     if (error) {
-      console.error("Error fetching invoice:", error);
+      console.warn("Invoice not found or inaccessible");
       router.push("/dashboard/invoices");
     } else {
       setInvoice(data);

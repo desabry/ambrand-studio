@@ -230,9 +230,6 @@ async function seedIfNeeded() {
     }
 }
 
-// Auto-seed when script is loaded
-if (typeof supabaseClient !== 'undefined') {
-    seedIfNeeded();
-} else {
-    console.warn('⚠️ Supabase client not loaded. Please ensure supabase-config.js is loaded first.');
-}
+// Seeding is disabled — fallback demo data in loadProjectsFromDB handles portfolio display.
+// To enable seeding later, uncomment below and run data/fix-all.sql in Supabase SQL Editor.
+// if (typeof supabaseClient !== 'undefined') { seedIfNeeded(); }

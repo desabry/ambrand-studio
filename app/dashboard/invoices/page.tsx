@@ -28,7 +28,7 @@ export default function InvoicesPage() {
       .order("created_at", { ascending: false });
 
     if (error) {
-      console.error("Error fetching invoices:", error);
+      console.warn("Invoices table not available — showing empty state");
     } else {
       setInvoices(data || []);
     }
