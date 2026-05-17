@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-17T00:00:00.000Z",
+  "title": "Design System: Ambrand Studio",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Signature Red", "canonical": "oklch(55% 0.22 25)", "tonalRamp": ["oklch(15% 0.04 25)", "oklch(25% 0.08 25)", "oklch(35% 0.14 25)", "oklch(45% 0.18 25)", "oklch(55% 0.22 25)", "oklch(65% 0.16 25)", "oklch(75% 0.10 25)", "oklch(90% 0.04 25)"] },
+      "footer-bg": { "role": "primary", "displayName": "Deep Red", "canonical": "oklch(45% 0.18 25)", "tonalRamp": ["oklch(15% 0.04 25)", "oklch(25% 0.08 25)", "oklch(35% 0.14 25)", "oklch(45% 0.18 25)", "oklch(55% 0.22 25)", "oklch(65% 0.16 25)", "oklch(75% 0.10 25)", "oklch(90% 0.04 25)"] },
+      "surface-50": { "role": "neutral", "displayName": "Paper", "canonical": "oklch(97% 0.002 250)", "tonalRamp": ["oklch(15% 0.002 250)", "oklch(30% 0.002 250)", "oklch(45% 0.002 250)", "oklch(60% 0.002 250)", "oklch(75% 0.002 250)", "oklch(85% 0.002 250)", "oklch(93% 0.002 250)", "oklch(97% 0.002 250)"] },
+      "surface-900": { "role": "neutral", "displayName": "Headline", "canonical": "oklch(20% 0.005 250)", "tonalRamp": ["oklch(15% 0.005 250)", "oklch(20% 0.005 250)", "oklch(30% 0.005 250)", "oklch(45% 0.005 250)", "oklch(60% 0.005 250)", "oklch(75% 0.005 250)", "oklch(85% 0.005 250)", "oklch(95% 0.005 250)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines and brand lockups. Uppercase, widely tracked." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs, descriptions. Max 75ch." },
+      "label": { "displayName": "Label", "purpose": "Navigation, buttons, form labels, metadata. Uppercase." }
+    },
+    "shadows": [
+      { "name": "interactive-lift", "value": "0 4px 12px rgba(0,0,0,0.1)", "purpose": "Hover/focus elevation for cards and buttons." },
+      { "name": "modal-depth", "value": "0 10px 30px rgba(0,0,0,0.15)", "purpose": "Modals and elevated overlays." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for all state transitions." },
+      { "name": "duration-fast", "value": "200ms", "purpose": "Hover and focus transitions." },
+      { "name": "duration-normal", "value": "300ms", "purpose": "Standard state transitions." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Near-black button for primary CTAs on light backgrounds.",
+      "html": "<button class=\"ds-btn-primary\">GET STARTED</button>",
+      "css": ".ds-btn-primary { background: #1a1d23; color: #ffffff; padding: 0.5rem 1.25rem; border-radius: 0.5rem; font-family: Inter, sans-serif; font-weight: 500; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; } .ds-btn-primary:hover { background: #e31937; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }"
+    },
+    {
+      "name": "Footer Contact Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Toggle button on red footer background.",
+      "html": "<button class=\"ds-btn-footer\">Contact Us</button>",
+      "css": ".ds-btn-footer { background: rgba(255,255,255,0.1); color: #ffffff; padding: 0.625rem 1.5rem; border-radius: 9999px; font-family: Inter, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; } .ds-btn-footer:hover { background: #ffffff; color: #b81d28; border-color: #ffffff; }"
+    },
+    {
+      "name": "Footer Social Icon",
+      "kind": "custom",
+      "refersTo": "social-icon",
+      "description": "Circular social media link on dark backgrounds.",
+      "html": "<a class=\"ds-social-icon\" href=\"#\" aria-label=\"Instagram\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z\"/></svg></a>",
+      "css": ".ds-social-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); display: inline-flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); transition: all 0.3s; text-decoration: none; } .ds-social-icon:hover { background: rgba(255,255,255,0.1); color: #ffffff; }"
+    },
+    {
+      "name": "Footer Input",
+      "kind": "input",
+      "refersTo": "input-footer",
+      "description": "Text input on the dark red footer background.",
+      "html": "<input class=\"ds-input-footer\" type=\"text\" placeholder=\"Your Name\" />",
+      "css": ".ds-input-footer { width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.15); color: #ffffff; font-size: 0.875rem; padding: 0.625rem 1rem; border-radius: 0.5rem; font-family: Inter, sans-serif; transition: border-color 0.3s; outline: none; } .ds-input-footer::placeholder { color: rgba(255,255,255,0.4); } .ds-input-footer:focus { border-color: rgba(255,255,255,0.6); }"
+    },
+    {
+      "name": "Scroll-to-Top",
+      "kind": "custom",
+      "refersTo": "scroll-top",
+      "description": "Floating arrow button in the footer bottom bar.",
+      "html": "<a class=\"ds-scroll-top\" href=\"#\" aria-label=\"Scroll to top\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"><path d=\"M18 15l-6-6-6 6\"/></svg></a>",
+      "css": ".ds-scroll-top { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); display: inline-flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); transition: all 0.3s; text-decoration: none; } .ds-scroll-top:hover { color: #ffffff; border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Bold Atelier",
+    "overview": "Ambrand Studio's visual system is a confident, premium creative atelier. The brand red is not an accent — it is a commitment, used generously as conviction rather than decoration. Surfaces are clean and spacious, letting the bold red anchors breathe. The system pairs a restrained neutral architecture with saturated red focal points, creating a rhythm of calm and emphasis.",
+    "keyCharacteristics": [
+      "Red as conviction, not accent — used on 30-60% of key surfaces (committed color strategy)",
+      "Flat surfaces with interactive elevation — depth appears only on hover/focus",
+      "Uppercase, widely tracked headings for editorial weight",
+      "Generous vertical rhythm — sections breathe with 5rem spacing",
+      "English-only, LTR layout with bold typographic hierarchy"
+    ],
+    "rules": [
+      { "name": "The Flat-by-Default Rule", "body": "Surfaces are flat at rest. Shadows appear only as a response to state (hover, elevation, focus).", "section": "elevation" },
+      { "name": "The Red as Conviction Rule", "body": "The brand red (#e31937 / #b81d28) is a committed surface color, not a decorative accent. Use it generously and consistently.", "section": "colors" }
+    ],
+    "dos": [
+      "Do use the brand red (#e31937 / #b81d28) as a committed surface color, not just a decorative accent.",
+      "Do keep surfaces flat at rest — let tonal contrast create depth.",
+      "Do use uppercase tracking for headings and labels where emphasis is needed.",
+      "Do use generous spacing (5rem section gaps, 1.5rem+ internal padding) — the layout should breathe.",
+      "Do use white/opacity tokens on dark backgrounds instead of gray (text-white/60, border-white/20, bg-black/20).",
+      "Do provide hover feedback on every interactive element — scale, shadow, or color shift."
+    ],
+    "donts": [
+      "Don't introduce glassmorphism, gradient text, or blur effects as decoration.",
+      "Don't use pure black (#000) or pure white (#fff) — tint neutrals subtly.",
+      "Don't clutter the footer with phone numbers or excessive links — keep it to brand, navigation, and contact.",
+      "Don't use side-stripe borders (border-left > 1px as accent).",
+      "Don't use bounce or elastic easing — stick to ease-out-expo for motion.",
+      "Don't wrap everything in a card container — let some sections breathe freely.",
+      "Don't animate layout properties (width, height, top, left) — use transforms and opacity."
+    ]
+  }
+}

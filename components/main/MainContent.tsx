@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function MainContent() {
+  const [showForm, setShowForm] = useState(false);
   const scriptsLoaded = useRef(false);
 
   useEffect(() => {
@@ -132,12 +133,15 @@ export function MainContent() {
       btn.textContent = "Sending...";
       btn.disabled = true;
 
-      const inputs = newForm.querySelectorAll("input, textarea");
+      const nameInput = document.getElementById("footerName") as HTMLInputElement | null;
+      const emailInput = document.getElementById("footerEmail") as HTMLInputElement | null;
+      const subjectInput = document.getElementById("footerSubject") as HTMLInputElement | null;
+      const messageInput = document.getElementById("footerMessage") as HTMLTextAreaElement | null;
       const msgData = {
-        name: (inputs[0] as HTMLInputElement)?.value || "",
-        email: (inputs[1] as HTMLInputElement)?.value || "",
-        subject: (inputs[2] as HTMLInputElement)?.value || "",
-        message: (inputs[3] as HTMLTextAreaElement)?.value || "",
+        name: nameInput?.value || "",
+        email: emailInput?.value || "",
+        subject: subjectInput?.value || "",
+        message: messageInput?.value || "",
       };
 
       try {
@@ -422,60 +426,145 @@ export function MainContent() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="contact-section-red">
-        <div className="container">
-          <div className="contact-grid-red">
-            <div className="contact-left-red">
-              <h2 className="contact-heading-red">Get In Touch</h2>
-              <div className="contact-info-red">
-                <div className="info-box-red">
-                  <div className="icon-wrapper-red">
-                    <i className="fas fa-envelope"></i>
+      <footer id="contact" style={{ minHeight: 0, background: '#b81d28', color: 'white', position: 'relative', overflow: 'hidden' }} className="py-20">
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 25%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.5) 75%, transparent 100%)' }} />
+        <div className="max-w-6xl mx-auto px-6">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 lg:gap-16">
+
+            <div className="relative">
+              <div className="flex items-baseline gap-3 mb-2">
+                <h3 className="text-white font-bold text-2xl tracking-[0.15em]">AMBRAND</h3>
+                <span className="w-6 h-px bg-white/30 hidden sm:inline-block"></span>
+              </div>
+              <p className="text-white/50 text-xs uppercase tracking-[0.2em] mb-5">Creative Studio</p>
+              <p className="text-neutral-200 text-sm leading-relaxed max-w-xs">
+                We craft brand identities with conviction.
+              </p>
+            </div>
+
+            <div className="md:border-l md:border-white/10 md:pl-12 lg:pl-16">
+              <h3 className="text-white font-bold text-sm uppercase tracking-[0.15em] mb-6">Pages</h3>
+              <ul className="space-y-3">
+                {["Home", "About Us", "Services", "Portfolio", "Blog"].map((page) => (
+                  <li key={page}>
+                    <a
+                      href="#"
+                      className="text-white/60 text-sm hover:text-white transition-all duration-300 group inline-flex items-center gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/0 group-hover:bg-white transition-all duration-300" />
+                      <span>{page}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="md:border-l md:border-white/10 md:pl-12 lg:pl-16">
+              <h3 className="text-white font-bold text-sm uppercase tracking-[0.15em] mb-6">Follow Us</h3>
+              <div className="flex gap-3 mb-7">
+                {[
+                  { icon: "fab fa-twitter", label: "X" },
+                  { icon: "fab fa-facebook", label: "Facebook" },
+                  { icon: "fab fa-instagram", label: "Instagram" },
+                  { icon: "fab fa-behance", label: "Behance" },
+                  { icon: "fab fa-linkedin", label: "LinkedIn" },
+                ].map((s) => (
+                  <a
+                    key={s.label}
+                    href="#"
+                    title={s.label}
+                    aria-label={s.label}
+                    className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 leading-none hover:bg-white hover:text-[#b81d28] hover:border-white transition-all duration-300"
+                  >
+                    <i className={s.icon}></i>
+                  </a>
+                ))}
+              </div>
+
+              <div>
+                {showForm && (
+                  <div className="animate-[fadeIn_0.3s_ease-out]">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-white font-bold text-xs uppercase tracking-[0.15em]">Contact Us</h3>
+                      <button
+                        onClick={() => setShowForm(false)}
+                        className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-white/50 transition-all duration-300"
+                        aria-label="Close contact form"
+                      >
+                        <i className="fas fa-times text-[10px]"></i>
+                      </button>
+                    </div>
+                    <form id="contactForm" className="space-y-2.5" noValidate>
+                      <input
+                        id="footerName"
+                        type="text"
+                        placeholder="Name"
+                        required
+                        aria-required="true"
+                        aria-label="Your name"
+                        className="w-full bg-black/20 border border-white/15 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/60 focus:ring-1 focus:ring-white/20 rounded-lg px-4 py-2.5 transition-all duration-300"
+                      />
+                      <input
+                        id="footerEmail"
+                        type="email"
+                        placeholder="Email"
+                        required
+                        aria-required="true"
+                        aria-label="Your email address"
+                        className="w-full bg-black/20 border border-white/15 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/60 focus:ring-1 focus:ring-white/20 rounded-lg px-4 py-2.5 transition-all duration-300"
+                      />
+                      <input
+                        id="footerSubject"
+                        type="text"
+                        placeholder="Subject"
+                        aria-label="Message subject"
+                        className="w-full bg-black/20 border border-white/15 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/60 focus:ring-1 focus:ring-white/20 rounded-lg px-4 py-2.5 transition-all duration-300"
+                      />
+                      <textarea
+                        id="footerMessage"
+                        placeholder="Your Message"
+                        rows={3}
+                        required
+                        aria-required="true"
+                        aria-label="Your message"
+                        className="w-full bg-black/20 border border-white/15 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/60 focus:ring-1 focus:ring-white/20 rounded-lg px-4 py-2.5 transition-all duration-300 resize-none"
+                      ></textarea>
+                      <button
+                        type="submit"
+                        className="w-full bg-white text-[#b81d28] text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-lg hover:bg-white/90 transition-all duration-300"
+                      >
+                        Send Message
+                      </button>
+                    </form>
                   </div>
-                  <div className="info-text-red">
-                    <span className="info-label-red">EMAIL</span>
-                    <p>ambrandstudio@hotmail.com</p>
-                  </div>
-                </div>
+                )}
+                {!showForm && (
+                  <button
+                    onClick={() => setShowForm(true)}
+                    className="bg-white/10 hover:bg-white text-white hover:text-[#b81d28] font-semibold text-xs uppercase tracking-wider px-6 py-2.5 rounded-full border border-white/20 hover:border-white transition-all duration-300"
+                  >
+                    Contact Us
+                  </button>
+                )}
               </div>
             </div>
-            <form className="contact-form-red" id="contactForm">
-              <div className="form-group-red has-icon-red">
-                <input type="text" placeholder="Your Name" required />
-                <i className="fas fa-user input-icon-red"></i>
-              </div>
-              <div className="form-group-red has-icon-red">
-                <input type="email" placeholder="Your Email" required />
-                <i className="fas fa-envelope input-icon-red"></i>
-              </div>
-              <div className="form-group-red">
-                <input type="text" placeholder="Subject" />
-              </div>
-              <div className="form-group-red">
-                <textarea placeholder="Your Message" rows={5} required></textarea>
-              </div>
-              <button type="submit" className="btn-submit-red">SEND MESSAGE</button>
-            </form>
-          </div>
-        </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <a href="#home">
-            <img src="images/navbar-logo.png" alt="Ambrand Studio Logo" className="footer-logo-img" />
-          </a>
-          <div className="footer-socials">
-            {["facebook", "instagram", "twitter", "linkedin"].map((s) => (
-              <a key={s} href="#" title={s.charAt(0).toUpperCase() + s.slice(1)} aria-label={`Visit our ${s} page`}>
-                <i className={`fab fa-${s}`}></i>
-              </a>
-            ))}
           </div>
-          <div className="footer-bottom">
-            <p>&copy; 2026 Ambrand Studio. All rights reserved.</p>
+
+          <div className="border-t border-white/10 mt-14 pt-7">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-xs text-white/40">
+                &copy; 2026 Ambrand Studio. All Rights Reserved.
+              </p>
+              <a
+                href="#home"
+                className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 hover:text-white hover:border-white/50 hover:bg-white/10 transition-all duration-300"
+                aria-label="Scroll to top"
+              >
+                <i className="fas fa-angle-up text-xs"></i>
+              </a>
+            </div>
           </div>
         </div>
       </footer>
