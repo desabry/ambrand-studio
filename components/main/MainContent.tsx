@@ -391,59 +391,6 @@ export function MainContent() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* CTA */}
-      <section className="cta-section">
-        <div className="container">
-          <h2>Ready to Create Something Amazing?</h2>
-          <p>Let&apos;s help you build a visual identity that stands out from the competition</p>
-
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="contact-section">
-        <div className="container">
-          <h2 className="section-title">Get In Touch</h2>
-          <div className="contact-grid">
-            <div className="contact-info">
-              <div className="info-box">
-                <i className="fas fa-phone info-icon"></i>
-                <div className="info-content">
-                  <h3>Phone</h3>
-                  <p>+20 (120) 2123 -666</p>
-                </div>
-              </div>
-              <div className="info-box">
-                <i className="fas fa-envelope info-icon"></i>
-                <div className="info-content">
-                  <h3>Email</h3>
-                  <p>ambrandstudio@hotmail.com</p>
-                </div>
-              </div>
-            </div>
-            <form className="contact-form" id="contactForm">
-              <div className="form-group">
-                <input type="text" placeholder="Your Name" required />
-              </div>
-              <div className="form-group">
-                <input type="email" placeholder="Your Email" required />
-              </div>
-              <div className="form-group">
-                <input type="text" placeholder="Subject" />
-              </div>
-              <div className="form-group">
-                <textarea placeholder="Your Message" rows={5} required></textarea>
-              </div>
-              <button type="submit" className="btn btn-primary">Send Message</button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="footer">
         {/* Logo Loop */}
         <section className="logo-loop-section">
           <div className="container">
@@ -464,7 +411,58 @@ export function MainContent() {
             </div>
           </div>
         </section>
+      </section>
 
+      {/* CTA */}
+      <section className="cta-section">
+        <div className="container">
+          <h2>Ready to Create Something Amazing?</h2>
+          <p>Let&apos;s help you build a visual identity that stands out from the competition</p>
+
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="contact-section-red">
+        <div className="container">
+          <div className="contact-grid-red">
+            <div className="contact-left-red">
+              <h2 className="contact-heading-red">Get In Touch</h2>
+              <div className="contact-info-red">
+                <div className="info-box-red">
+                  <div className="icon-wrapper-red">
+                    <i className="fas fa-envelope"></i>
+                  </div>
+                  <div className="info-text-red">
+                    <span className="info-label-red">EMAIL</span>
+                    <p>ambrandstudio@hotmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form className="contact-form-red" id="contactForm">
+              <div className="form-group-red has-icon-red">
+                <input type="text" placeholder="Your Name" required />
+                <i className="fas fa-user input-icon-red"></i>
+              </div>
+              <div className="form-group-red has-icon-red">
+                <input type="email" placeholder="Your Email" required />
+                <i className="fas fa-envelope input-icon-red"></i>
+              </div>
+              <div className="form-group-red">
+                <input type="text" placeholder="Subject" />
+              </div>
+              <div className="form-group-red">
+                <textarea placeholder="Your Message" rows={5} required></textarea>
+              </div>
+              <button type="submit" className="btn-submit-red">SEND MESSAGE</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
         <div className="container">
           <a href="#home">
             <img src="images/navbar-logo.png" alt="Ambrand Studio Logo" className="footer-logo-img" />
