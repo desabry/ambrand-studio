@@ -14,11 +14,17 @@ html {
     scroll-snap-type: y mandatory;
 }
 
-section, .footer, .marquee-container {
+section,
+.footer,
+.marquee-container {
     scroll-snap-align: start;
 }
 
-#home, #about, #services, #works, #contact {
+#home,
+#about,
+#services,
+#works,
+#contact {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -230,7 +236,8 @@ body {
 }
 
 .container {
-    max-width: 1100px; margin: 0 auto;
+    max-width: 1100px;
+    margin: 0 auto;
     padding: 0 20px;
 }
 
@@ -354,7 +361,7 @@ body {
     font-size: 1.8rem;
     font-weight: 500;
     color: #111;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 1.5rem;
     margin-bottom: 1.5rem;
 }
@@ -781,16 +788,16 @@ body.home-fullscreen {
     .about-main-title {
         font-size: 2.5rem;
     }
-    
+
     .about-content-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
-    
+
     .about-content-right {
         text-align: center;
     }
-    
+
     .about-content-right .about-desc {
         max-width: 100%;
     }
@@ -949,7 +956,7 @@ body.home-fullscreen {
         padding: 30px 20px;
         margin: 20px;
     }
-    
+
     .user-menu {
         flex-direction: column;
         gap: 10px;
@@ -1221,7 +1228,7 @@ body.home-fullscreen {
 .filter-btn:hover {
     background: var(--text-light);
     border-color: var(--text-light);
-    color: var(--bg-dark);
+    color: #000000;
     transform: translateY(-2px);
 }
 
@@ -2861,7 +2868,11 @@ footer::before {
 }
 
 footer .container {
-    max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
 }
 
 .footer-content {
@@ -3277,8 +3288,13 @@ footer .container {
 }
 
 @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 /* Client Reviews Marquee */
@@ -3297,8 +3313,13 @@ footer .container {
 }
 
 @keyframes marquee-reverse {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .testimonial-card {
@@ -3364,7 +3385,7 @@ footer .container {
     left: -10%;
     width: 50%;
     height: 50%;
-    background: radial-gradient(circle, rgba(138,43,226,0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
     filter: blur(60px);
     z-index: -1;
 }
@@ -3375,7 +3396,7 @@ footer .container {
     right: -10%;
     width: 60%;
     height: 60%;
-    background: radial-gradient(circle, rgba(65,105,225,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(65, 105, 225, 0.1) 0%, transparent 70%);
     filter: blur(60px);
     z-index: -1;
 }
@@ -3399,7 +3420,7 @@ footer .container {
     color: transparent;
     -webkit-text-stroke: 2px #b088f9;
     display: block;
-    filter: drop-shadow(0 0 15px rgba(176,136,249,0.3));
+    filter: drop-shadow(0 0 15px rgba(176, 136, 249, 0.3));
 }
 
 /* =====================
@@ -3410,7 +3431,7 @@ footer .container {
     position: fixed;
     inset: 0;
     z-index: 99999;
-    background: rgba(0,0,0,0.75);
+    background: rgba(0, 0, 0, 0.75);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     align-items: center;
@@ -3420,12 +3441,12 @@ footer .container {
 
 .admin-modal-card {
     background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
-    border: 1px solid rgba(82,39,255,0.35);
+    border: 1px solid rgba(82, 39, 255, 0.35);
     border-radius: 20px;
     padding: 48px 40px;
     width: 100%;
     max-width: 400px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
     text-align: center;
     position: relative;
 }
@@ -3445,8 +3466,8 @@ footer .container {
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    background: rgba(82,39,255,0.15);
-    border: 1px solid rgba(82,39,255,0.4);
+    background: rgba(82, 39, 255, 0.15);
+    border: 1px solid rgba(82, 39, 255, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3477,8 +3498,8 @@ footer .container {
     width: 100%;
     padding: 14px 16px;
     border-radius: 10px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: #fff;
     font-size: 15px;
     outline: none;
@@ -3488,7 +3509,7 @@ footer .container {
 }
 
 .admin-modal-input:focus {
-    border-color: rgba(82,39,255,0.6);
+    border-color: rgba(82, 39, 255, 0.6);
 }
 
 .admin-modal-error {
@@ -3516,7 +3537,15 @@ footer .container {
     opacity: .85;
 }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 
 /* =====================
    Apple Hello Effect
@@ -3527,7 +3556,7 @@ footer .container {
     height: auto;
     display: block;
     margin: 0 auto;
-    filter: drop-shadow(0 0 15px rgba(176,136,249,0.4));
+    filter: drop-shadow(0 0 15px rgba(176, 136, 249, 0.4));
 }
 
 .hello-path {
