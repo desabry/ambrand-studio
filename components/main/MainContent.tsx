@@ -16,7 +16,6 @@ export function MainContent() {
         "js/supabase-config.js",
         "js/text-letter-filler.js",
         "js/BlurText.js",
-        "js/auth.js",
         "js/supabase-db.js",
         "js/seed-data.js",
         "js/TextPressureAdvanced.js",
@@ -50,12 +49,8 @@ export function MainContent() {
         }
       }
 
-      // Init auth forms (DOMContentLoaded already fired, so manually init)
-      if (typeof (window as any).initAuthForms === "function") {
-        (window as any).initAuthForms();
-      } else {
-        initAuthFormsFallback();
-      }
+      // Init auth forms — always use our React-side server-route handlers
+      initAuthFormsFallback();
 
       // Init hero text pressure
       if (typeof (window as any).initTextPressure === "function") {
@@ -124,6 +119,18 @@ export function MainContent() {
   }
 
   function initAuthFormsFallback() {
+    const modal = document.getElementById("authModal");
+    if (typeof (window as any).openAuthModal !== "function") {
+      (window as any).openAuthModal = () => {
+        modal?.classList.remove("hidden");
+      };
+    }
+    if (typeof (window as any).closeAuthModal !== "function") {
+      (window as any).closeAuthModal = () => {
+        modal?.classList.add("hidden");
+      };
+    }
+
     const loginForm = document.getElementById("loginForm");
     if (loginForm && !(loginForm as any)._authBound) {
       (loginForm as any)._authBound = true;
@@ -131,12 +138,21 @@ export function MainContent() {
         e.preventDefault();
         const email = (document.getElementById("loginEmail") as HTMLInputElement)?.value;
         const password = (document.getElementById("loginPassword") as HTMLInputElement)?.value;
-        const result = await (window as any).signIn?.(email, password);
-        if (result?.success) {
-          (window as any).closeAuthModal?.();
-          window.location.href = "/";
-        } else {
-          alert("Login failed: " + (result?.error || "Unknown error"));
+        try {
+          const res = await fetch("/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+          const data = await res.json();
+          if (res.ok) {
+            (window as any).closeAuthModal?.();
+            window.location.href = "/dashboard";
+          } else {
+            alert("Login failed: " + (data.error || "Unknown error"));
+          }
+        } catch {
+          alert("Login failed: Network error. Please try again.");
         }
       });
     }
@@ -148,12 +164,25 @@ export function MainContent() {
         const name = (document.getElementById("signupName") as HTMLInputElement)?.value;
         const email = (document.getElementById("signupEmail") as HTMLInputElement)?.value;
         const password = (document.getElementById("signupPassword") as HTMLInputElement)?.value;
-        const result = await (window as any).signUp?.(email, password, name);
-        if (result?.success) {
-          alert("Signup successful! Please check your email to verify your account.");
-          (window as any).closeAuthModal?.();
-        } else {
-          alert("Signup failed: " + (result?.error || "Unknown error"));
+        try {
+          const res = await fetch("/auth/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email,
+              password,
+              options: { data: { full_name: name } },
+            }),
+          });
+          const data = await res.json();
+          if (res.ok) {
+            alert("Signup successful! Please check your email to verify your account.");
+            (window as any).closeAuthModal?.();
+          } else {
+            alert("Signup failed: " + (data.error || "Unknown error"));
+          }
+        } catch {
+          alert("Signup failed: Network error. Please try again.");
         }
       });
     }
