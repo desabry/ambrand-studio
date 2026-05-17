@@ -235,6 +235,17 @@ export function MainContent() {
         <div className="container">
           <h1 id="hero-title-pressure" className="blur-text-container text-2xl mb-8"></h1>
         </div>
+        {/* Services Marquee — full width */}
+        <div className="marquee-container">
+          <div className="marquee-content">
+            {["Branding", "Packaging", "Digital Design", "Motion Graphics", "3D Modeling", "UI/UX Design"].map((item) => (
+              <div key={item} className="marquee-item">{item}</div>
+            ))}
+            {["Branding", "Packaging", "Digital Design", "Motion Graphics", "3D Modeling", "UI/UX Design"].map((item) => (
+              <div key={`dup-${item}`} className="marquee-item">{item}</div>
+            ))}
+          </div>
+        </div>
       </section>
 
 

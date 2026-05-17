@@ -3256,7 +3256,7 @@ footer .container {
    ===================== */
 .marquee-container {
     overflow: hidden;
-    padding: 1.5rem 0;
+    padding: 2.5rem 0 1.5rem;
     white-space: nowrap;
     position: relative;
     z-index: 5;
@@ -3268,7 +3268,7 @@ footer .container {
 }
 
 .marquee-item {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 700;
     text-transform: uppercase;
     color: var(--text-light);
