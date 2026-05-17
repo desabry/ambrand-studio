@@ -339,18 +339,7 @@ export function MainContent() {
         </div>
 
       </section>
-      {/* Services Marquee */}
-      <div className="marquee-container">
-        <div className="marquee-content">
-          {["Branding", "Packaging", "Digital Design", "Motion Graphics", "3D Modeling", "UI/UX Design"].map((item) => (
-            <div key={item} className="marquee-item">{item}</div>
-          ))}
-          {/* Duplicate for infinite loop */}
-          {["Branding", "Packaging", "Digital Design", "Motion Graphics", "3D Modeling", "UI/UX Design"].map((item) => (
-            <div key={`dup-${item}`} className="marquee-item">{item}</div>
-          ))}
-        </div>
-      </div>
+
       {/* Testimonials */}
       <section className="clients-testimonials">
         <div className="container">
