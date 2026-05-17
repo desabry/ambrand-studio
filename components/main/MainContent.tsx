@@ -49,8 +49,7 @@ export function MainContent() {
         }
       }
 
-      // Init auth forms — always use our React-side server-route handlers
-      initAuthFormsFallback();
+
 
       // Init hero text pressure
       if (typeof (window as any).initTextPressure === "function") {
@@ -118,93 +117,7 @@ export function MainContent() {
     }
   }
 
-  function initAuthFormsFallback() {
-    const modal = document.getElementById("authModal");
-    if (typeof (window as any).openAuthModal !== "function") {
-      (window as any).openAuthModal = () => {
-        modal?.classList.remove("hidden");
-      };
-    }
-    if (typeof (window as any).closeAuthModal !== "function") {
-      (window as any).closeAuthModal = () => {
-        modal?.classList.add("hidden");
-      };
-    }
 
-    const loginForm = document.getElementById("loginForm");
-    if (loginForm && !(loginForm as any)._authBound) {
-      (loginForm as any)._authBound = true;
-      loginForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const email = (document.getElementById("loginEmail") as HTMLInputElement)?.value;
-        const password = (document.getElementById("loginPassword") as HTMLInputElement)?.value;
-        try {
-          const res = await fetch("/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
-          });
-          const data = await res.json();
-          if (res.ok) {
-            (window as any).closeAuthModal?.();
-            window.location.href = "/dashboard";
-          } else {
-            alert("Login failed: " + (data.error || "Unknown error"));
-          }
-        } catch {
-          alert("Login failed: Network error. Please try again.");
-        }
-      });
-    }
-    const signupForm = document.getElementById("signupForm");
-    if (signupForm && !(signupForm as any)._authBound) {
-      (signupForm as any)._authBound = true;
-      signupForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const name = (document.getElementById("signupName") as HTMLInputElement)?.value;
-        const email = (document.getElementById("signupEmail") as HTMLInputElement)?.value;
-        const password = (document.getElementById("signupPassword") as HTMLInputElement)?.value;
-        try {
-          const res = await fetch("/auth/signup", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email,
-              password,
-              options: { data: { full_name: name } },
-            }),
-          });
-          const data = await res.json();
-          if (res.ok) {
-            alert("Signup successful! Please check your email to verify your account.");
-            (window as any).closeAuthModal?.();
-          } else {
-            alert("Signup failed: " + (data.error || "Unknown error"));
-          }
-        } catch {
-          alert("Signup failed: Network error. Please try again.");
-        }
-      });
-    }
-    if (typeof (window as any).switchToLogin !== "function") {
-      (window as any).switchToLogin = function () {
-        document.getElementById("signupForm")?.classList.add("hidden");
-        document.getElementById("loginForm")?.classList.remove("hidden");
-        document.getElementById("authTitle")!.textContent = "Login";
-        document.getElementById("authSwitchText")!.innerHTML =
-          'Don\'t have an account? <a href="#" onclick="switchToSignup()">Sign up</a>';
-      };
-    }
-    if (typeof (window as any).switchToSignup !== "function") {
-      (window as any).switchToSignup = function () {
-        document.getElementById("loginForm")?.classList.add("hidden");
-        document.getElementById("signupForm")?.classList.remove("hidden");
-        document.getElementById("authTitle")!.textContent = "Sign Up";
-        document.getElementById("authSwitchText")!.innerHTML =
-          'Already have an account? <a href="#" onclick="switchToLogin()">Login</a>';
-      };
-    }
-  }
 
   function initContactForm() {
     const form = document.getElementById("contactForm");
@@ -311,7 +224,6 @@ export function MainContent() {
             <li><a href="#services" className="nav-link">Services</a></li>
             <li><a href="#works" className="nav-link">Works</a></li>
             <li><a href="#contact" className="nav-link">Contact</a></li>
-            <li id="nav-login-item"><a href="#" onClick={() => (window as any).openAuthModal?.()} className="nav-link">Login</a></li>
           </ul>
         </div>
       </nav>
@@ -486,7 +398,7 @@ export function MainContent() {
         <div className="container">
           <h2>Ready to Create Something Amazing?</h2>
           <p>Let&apos;s help you build a visual identity that stands out from the competition</p>
-          <a href="#contact" className="btn btn-primary">Get Started Today</a>
+
         </div>
       </section>
 
@@ -570,49 +482,7 @@ export function MainContent() {
         </div>
       </footer>
 
-      {/* Auth Modal */}
-      <div id="authModal" className="auth-modal hidden">
-        <div className="auth-modal-content">
-          <div className="auth-modal-header">
-            <h2 id="authTitle">Login</h2>
-            <button className="auth-close-btn" onClick={() => (window as any).closeAuthModal?.()}>&times;</button>
-          </div>
-          <form id="loginForm" className="auth-form">
-            <div className="form-group">
-              <label htmlFor="loginEmail">Email</label>
-              <input type="email" id="loginEmail" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="loginPassword">Password</label>
-              <input type="password" id="loginPassword" required />
-            </div>
-            <button type="submit" className="auth-btn">Login</button>
-          </form>
-          <form id="signupForm" className="auth-form hidden">
-            <div className="form-group">
-              <label htmlFor="signupName">Full Name</label>
-              <input type="text" id="signupName" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="signupEmail">Email</label>
-              <input type="email" id="signupEmail" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="signupPassword">Password</label>
-              <input type="password" id="signupPassword" required minLength={6} />
-            </div>
-            <button type="submit" className="auth-btn">Sign Up</button>
-          </form>
-          <div className="auth-switch">
-            <p id="authSwitchText">
-              Don&apos;t have an account?{" "}
-              <a href="#" onClick={() => (window as any).switchToSignup?.()}>
-                Sign up
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
+
     </>
   );
 }

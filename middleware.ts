@@ -53,7 +53,7 @@ export async function middleware(request: NextRequest) {
 
   if (!user) {
     console.log('[middleware] ⛔ No user — strict redirect to /')
-    return NextResponse.redirect(new URL('/', request.url))
+    return NextResponse.redirect(new URL('/login', request.url))
   }
 
   console.log('[middleware] ✅ Authenticated — rendering dashboard')

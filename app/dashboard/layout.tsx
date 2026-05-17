@@ -27,7 +27,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   if (!user) {
     console.log('[dashboard/layout] ⛔ No user — calling redirect("/")');
-    redirect('/');
+    redirect('/login');
   }
 
   console.log('[dashboard/layout] ✅ Authenticated as:', user.id);

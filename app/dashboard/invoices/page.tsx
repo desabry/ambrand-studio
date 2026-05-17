@@ -61,7 +61,7 @@ export default function InvoicesPage() {
 
   const filteredInvoices = invoices
     .filter((inv) => {
-      const matchesSearch = 
+      const matchesSearch =
         inv.invoice_number.toLowerCase().includes(search.toLowerCase()) ||
         inv.clients?.company_name.toLowerCase().includes(search.toLowerCase());
       const matchesStatus = statusFilter === "all" || inv.payment_status === statusFilter;
@@ -111,7 +111,7 @@ export default function InvoicesPage() {
           />
         </div>
         <div className="flex items-center gap-3 w-full md:w-auto">
-          <select 
+          <select
             className="bg-surface-50 border border-surface-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/20"
             value={statusFilter}
             title="Filter by Status"
@@ -123,7 +123,7 @@ export default function InvoicesPage() {
             <option value="partial">Partial</option>
             <option value="overdue">Overdue</option>
           </select>
-          <select 
+          <select
             className="bg-surface-50 border border-surface-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/20"
             value={sortBy}
             title="Sort by"

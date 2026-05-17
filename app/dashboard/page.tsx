@@ -198,9 +198,9 @@ export default function DashboardOverview() {
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-mono font-semibold text-surface-900">{inv.invoice_number}</span>
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium capitalize border ${inv.payment_status === "paid" ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
-                        inv.payment_status === "unpaid" ? "bg-rose-50 text-rose-700 border-rose-100" :
-                          inv.payment_status === "overdue" ? "bg-red-50 text-red-700 border-red-100" :
-                            "bg-amber-50 text-amber-700 border-amber-100"
+                      inv.payment_status === "unpaid" ? "bg-rose-50 text-rose-700 border-rose-100" :
+                        inv.payment_status === "overdue" ? "bg-red-50 text-red-700 border-red-100" :
+                          "bg-amber-50 text-amber-700 border-amber-100"
                       }`}>
                       {inv.payment_status}
                     </span>
