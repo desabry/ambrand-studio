@@ -24,7 +24,6 @@ class ProjectGallery {
         
         this.projects = [];
         this.activeTab = this.options.allLabel;
-        this.lightboxImage = null;
         
         this.init();
     }
@@ -59,6 +58,7 @@ class ProjectGallery {
                     title: title,
                     category: category,
                     categoryData: categoryData,
+                    slug: this.toSlug(title),
                     focalX: 50,
                     focalY: 50
                 };
@@ -76,6 +76,7 @@ class ProjectGallery {
                     title: 'Qahwa Coffee Brand Development',
                     category: 'Brand Development',
                     categoryData: 'brand',
+                    slug: 'qahwa-coffee-brand-development',
                     focalX: 50,
                     focalY: 50
                 },
@@ -87,6 +88,7 @@ class ProjectGallery {
                     title: 'Tech Solutions Digital Identity',
                     category: 'Logo Design',
                     categoryData: 'logo',
+                    slug: 'tech-solutions-digital-identity',
                     focalX: 50,
                     focalY: 50
                 },
@@ -98,6 +100,7 @@ class ProjectGallery {
                     title: 'Organic Beauty Packaging Design',
                     category: 'Packaging Design',
                     categoryData: 'packaging',
+                    slug: 'organic-beauty-packaging-design',
                     focalX: 50,
                     focalY: 50
                 },
@@ -109,6 +112,7 @@ class ProjectGallery {
                     title: 'Fitness Pro Promotional Video',
                     category: 'Motion Graphics',
                     categoryData: 'motion',
+                    slug: 'fitness-pro-promotional-video',
                     focalX: 50,
                     focalY: 50
                 },
@@ -120,6 +124,7 @@ class ProjectGallery {
                     title: 'Luxury Hotels E-Commerce Website',
                     category: 'Website Design',
                     categoryData: 'website',
+                    slug: 'luxury-hotels-ecommerce-website',
                     focalX: 50,
                     focalY: 50
                 },
@@ -131,11 +136,16 @@ class ProjectGallery {
                     title: '3D Product Modeling',
                     category: '3D Design',
                     categoryData: '3d',
+                    slug: '3d-product-modeling',
                     focalX: 50,
                     focalY: 50
                 }
             ];
         }
+    }
+    
+    toSlug(str) {
+        return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     }
     
     getTabs() {
@@ -174,12 +184,11 @@ class ProjectGallery {
                 </div>
                 <div class="project-cards-grid" style="grid-template-columns: repeat(${this.options.columns}, 1fr); gap: ${this.options.cardGap}px;">
                     ${filteredProjects.map((project, index) => `
-                        <div class="project-card" style="animation-delay: ${index * 0.25}s">
+                        <div class="project-card" data-slug="${project.slug}" style="animation-delay: ${index * 0.25}s">
                             <div class="project-image-container" style="aspect-ratio: ${this.options.aspectRatio}">
                                 <img src="${project.image.src}" 
                                      alt="${project.image.alt}"
-                                     style="object-position: ${project.focalX}% ${project.focalY}%"
-                                     data-lightbox="${project.image.src}">
+                                     style="object-position: ${project.focalX}% ${project.focalY}%">
                                 <div class="project-overlay">
                                     <h3>${project.title}</h3>
                                     <span class="category-badge">${project.category}</span>
@@ -194,34 +203,18 @@ class ProjectGallery {
     }
     
     bindEvents() {
-        // Tab switching
         this.container.addEventListener('click', (e) => {
             if (e.target.classList.contains('filter-tab')) {
                 this.switchTab(e.target.dataset.tab);
             }
             
-            // Lightbox
-            if (e.target.dataset.lightbox) {
-                this.openLightbox(e.target.dataset.lightbox);
-            }
-        });
-        
-        // Close lightbox
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('lightbox') || e.target.closest('.lightbox-close')) {
-                this.closeLightbox();
-            }
-        });
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.lightboxImage) {
-                this.closeLightbox();
+            const card = e.target.closest('.project-card');
+            if (card && card.dataset.slug) {
+                window.location.href = `/work/${card.dataset.slug}`;
             }
         });
     }
-    
-    switchTab(tab) {
+        switchTab(tab) {
         if (tab === this.activeTab) return;
         
         const direction = this.getTabs().indexOf(tab) > this.getTabs().indexOf(this.activeTab) ? 1 : -1;
@@ -239,35 +232,6 @@ class ProjectGallery {
         setTimeout(() => {
             this.render();
         }, 300);
-    }
-    
-    openLightbox(imageSrc) {
-        this.lightboxImage = imageSrc;
-        const lightbox = document.createElement('div');
-        lightbox.className = 'lightbox';
-        lightbox.innerHTML = `
-            <div class="lightbox-close">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </div>
-            <img src="${imageSrc}" alt="Project image">
-        `;
-        document.body.appendChild(lightbox);
-        document.body.style.overflow = 'hidden';
-    }
-    
-    closeLightbox() {
-        const lightbox = document.querySelector('.lightbox');
-        if (lightbox) {
-            lightbox.style.opacity = '0';
-            setTimeout(() => {
-                lightbox.remove();
-                document.body.style.overflow = '';
-            }, 300);
-        }
-        this.lightboxImage = null;
     }
     
     // Public methods

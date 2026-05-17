@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export function MainContent() {
-  const [showForm, setShowForm] = useState(false);
   const scriptsLoaded = useRef(false);
 
   useEffect(() => {
@@ -73,9 +72,6 @@ export function MainContent() {
         (window as any).checkAuthState();
       }
 
-      // Init contact form
-      initContactForm();
-
       // Init projects
       if (typeof (window as any).initializeApp === "function") {
         (window as any).initializeApp();
@@ -94,15 +90,15 @@ export function MainContent() {
         grid.innerHTML = (window as any).projects
           .map(
             (p: any) => `
-          <div class="gallery-item-minimal animate fade-in-up" data-category="${p.category?.toLowerCase() || ""}">
-            <div class="gallery-image-wrapper">
-              <img src="${p.cover || "https://via.placeholder.com/800x600"}" alt="${p.title}">
-              <div class="eje-overlay">
+          <div class="gallery-item-minimal animate fade-in-up" data-category="${p.category?.toLowerCase() || ""}" data-slug="${(p.url || p.title || "").toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}" style="cursor:pointer">
+            <div class="gallery-image-wrapper" onclick="window.location.href='${p.url || `/work/${(p.title || "").toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`}'">
+              <img src="${p.cover || "https://via.placeholder.com/800x600"}" alt="${p.title}" style="pointer-events:none">
+              <div class="eje-overlay" style="pointer-events:none">
                 <span class="eje-category">${p.category || ""}</span>
                 <h3 class="eje-title">${p.title}</h3>
               </div>
-              <div class="card-glass-button">
-                <a href="${p.url || "work-details.html"}" class="glass-btn">View Project</a>
+              <div class="card-glass-button" style="pointer-events:none">
+                <span class="glass-btn">View Project</span>
               </div>
             </div>
           </div>`
@@ -119,71 +115,6 @@ export function MainContent() {
   }
 
 
-
-  function initContactForm() {
-    const form = document.getElementById("contactForm");
-    if (!form) return;
-    const newForm = form.cloneNode(true) as HTMLFormElement;
-    form.parentNode?.replaceChild(newForm, form);
-
-    newForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const btn = newForm.querySelector('button[type="submit"]') as HTMLButtonElement;
-      const originalText = btn.textContent || "Send Message";
-      btn.textContent = "Sending...";
-      btn.disabled = true;
-
-      const nameInput = document.getElementById("footerName") as HTMLInputElement | null;
-      const emailInput = document.getElementById("footerEmail") as HTMLInputElement | null;
-      const subjectInput = document.getElementById("footerSubject") as HTMLInputElement | null;
-      const messageInput = document.getElementById("footerMessage") as HTMLTextAreaElement | null;
-      const msgData = {
-        name: nameInput?.value || "",
-        email: emailInput?.value || "",
-        subject: subjectInput?.value || "",
-        message: messageInput?.value || "",
-      };
-
-      try {
-        const result = await (window as any).dbSendMessage(msgData);
-        if (result?.success) {
-          const toast = document.createElement("div");
-          toast.id = "contact-toast";
-          toast.innerHTML = `
-            <div style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;
-              display:flex;align-items:center;justify-content:center;
-              background:#e31937;backdrop-filter:blur(8px);animation:fadeIn .3s ease">
-              <div style="background:#1a1a2e;border:1px solid rgba(82,39,255,0.3);
-                border-radius:16px;padding:40px;text-align:center;max-width:400px;box-shadow:0 20px 60px #e31937">
-                <div style="width:64px;height:64px;border-radius:50%;
-                  background:rgba(26,158,117,0.15);display:flex;align-items:center;justify-content:center;
-                  margin:0 auto 20px;font-size:28px;color:#1a9e75">
-                  <i class="fas fa-check-circle"></i>
-                </div>
-                <h3 style="color:#fff;font-size:20px;margin-bottom:8px">Message Sent!</h3>
-                <p style="color:#9a9897;font-size:14px;line-height:1.6">
-                  Thank you for reaching out! We'll get back to you soon.
-                </p>
-                <button onclick="this.closest('#contact-toast').remove()"
-                  style="margin-top:20px;padding:10px 28px;border:none;background:#5227FF;
-                  color:#fff;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600">
-                  Got it!
-                </button>
-              </div>
-            </div>`;
-          document.body.appendChild(toast);
-          newForm.reset();
-        } else {
-          alert("Failed to send message. Please try again.");
-        }
-      } catch {
-        alert("Something went wrong. Please try again.");
-      }
-
-      btn.textContent = originalText;
-      btn.disabled = false;
-    });
-  }
 
   return (
     <>
@@ -433,14 +364,11 @@ export function MainContent() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 lg:gap-16">
 
             <div className="relative">
-              <div className="flex items-baseline gap-3 mb-2">
-                <h3 className="text-white font-bold text-2xl tracking-[0.15em]">AMBRAND</h3>
-                <span className="w-6 h-px bg-white/30 hidden sm:inline-block"></span>
-              </div>
-              <p className="text-white/50 text-xs uppercase tracking-[0.2em] mb-5">Creative Studio</p>
-              <p className="text-neutral-200 text-sm leading-relaxed max-w-xs">
-                We craft brand identities with conviction.
-              </p>
+              <img
+                src="/images/navbar-logo.png"
+                alt="Ambrand Studio"
+                className="h-32 w-auto"
+              />
             </div>
 
             <div className="md:border-l md:border-white/10 md:pl-12 lg:pl-16">
@@ -462,7 +390,7 @@ export function MainContent() {
 
             <div className="md:border-l md:border-white/10 md:pl-12 lg:pl-16">
               <h3 className="text-white font-bold text-sm uppercase tracking-[0.15em] mb-6">Follow Us</h3>
-              <div className="flex gap-3 mb-7">
+              <div className="flex gap-3">
                 {[
                   { icon: "fab fa-twitter", label: "X" },
                   { icon: "fab fa-facebook", label: "Facebook" },
@@ -475,78 +403,11 @@ export function MainContent() {
                     href="#"
                     title={s.label}
                     aria-label={s.label}
-                    className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 leading-none hover:bg-white hover:text-[#b81d28] hover:border-white transition-all duration-300"
+                    className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#b81d28] hover:border-white transition-all duration-300"
                   >
-                    <i className={s.icon}></i>
+                    <i className={`${s.icon} text-center`}></i>
                   </a>
                 ))}
-              </div>
-
-              <div>
-                {showForm && (
-                  <div className="animate-[fadeIn_0.3s_ease-out]">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-white font-bold text-xs uppercase tracking-[0.15em]">Contact Us</h3>
-                      <button
-                        onClick={() => setShowForm(false)}
-                        className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-white/50 transition-all duration-300"
-                        aria-label="Close contact form"
-                      >
-                        <i className="fas fa-times text-[10px]"></i>
-                      </button>
-                    </div>
-                    <form id="contactForm" className="space-y-2.5" noValidate>
-                      <input
-                        id="footerName"
-                        type="text"
-                        placeholder="Name"
-                        required
-                        aria-required="true"
-                        aria-label="Your name"
-                        className="w-full bg-black/20 border border-white/15 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/60 focus:ring-1 focus:ring-white/20 rounded-lg px-4 py-2.5 transition-all duration-300"
-                      />
-                      <input
-                        id="footerEmail"
-                        type="email"
-                        placeholder="Email"
-                        required
-                        aria-required="true"
-                        aria-label="Your email address"
-                        className="w-full bg-black/20 border border-white/15 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/60 focus:ring-1 focus:ring-white/20 rounded-lg px-4 py-2.5 transition-all duration-300"
-                      />
-                      <input
-                        id="footerSubject"
-                        type="text"
-                        placeholder="Subject"
-                        aria-label="Message subject"
-                        className="w-full bg-black/20 border border-white/15 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/60 focus:ring-1 focus:ring-white/20 rounded-lg px-4 py-2.5 transition-all duration-300"
-                      />
-                      <textarea
-                        id="footerMessage"
-                        placeholder="Your Message"
-                        rows={3}
-                        required
-                        aria-required="true"
-                        aria-label="Your message"
-                        className="w-full bg-black/20 border border-white/15 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white/60 focus:ring-1 focus:ring-white/20 rounded-lg px-4 py-2.5 transition-all duration-300 resize-none"
-                      ></textarea>
-                      <button
-                        type="submit"
-                        className="w-full bg-white text-[#b81d28] text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-lg hover:bg-white/90 transition-all duration-300"
-                      >
-                        Send Message
-                      </button>
-                    </form>
-                  </div>
-                )}
-                {!showForm && (
-                  <button
-                    onClick={() => setShowForm(true)}
-                    className="bg-white/10 hover:bg-white text-white hover:text-[#b81d28] font-semibold text-xs uppercase tracking-wider px-6 py-2.5 rounded-full border border-white/20 hover:border-white transition-all duration-300"
-                  >
-                    Contact Us
-                  </button>
-                )}
               </div>
             </div>
 
